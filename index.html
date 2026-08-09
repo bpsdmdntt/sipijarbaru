@@ -1,0 +1,3043 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIPIJAR — BPSDMD Provinsi NTT</title>
+<meta name="description" content="SIPIJAR — Sistem Pelatihan dan Pembelajaran Terintegrasi BPSDMD Provinsi Nusa Tenggara Timur.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23172746'/%3E%3Cpath d='M14 40 L26 18 L32 30 L38 18 L50 40' stroke='%23C99A3D' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{
+    --ink-deep:#0C1526;
+    --ink:#172746;
+    --ink-soft:#3C4E77;
+    --ink-mist:#7C88A6;
+    --paper:#F3EFE3;
+    --paper-dim:#E8E2D0;
+    --gold:#C99A3D;
+    --gold-bright:#E3B75B;
+    --clay:#A8462B;
+    --clay-bright:#C25735;
+    --ink-line:rgba(243,239,227,0.14);
+    --text-on-paper:#1D1A12;
+    --radius:2px;
+    --maxw:1180px;
+    --ease:cubic-bezier(.22,.68,.32,1);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--text-on-paper);
+    font-family:'Instrument Sans',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:currentColor;
+    display:inline-block;
+  }
+
+  /* ---------- Woven signature motif ---------- */
+  .ikat-band{
+    height:14px;
+    width:100%;
+    background:
+      repeating-linear-gradient(115deg,
+        var(--gold) 0 8px,
+        var(--clay) 8px 16px,
+        var(--ink) 16px 24px,
+        var(--paper) 24px 26px,
+        var(--ink) 26px 34px,
+        var(--clay) 34px 42px,
+        var(--gold) 42px 50px,
+        var(--paper) 50px 52px
+      );
+    background-size: 52px 100%;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:var(--ink);
+    border-bottom:1px solid var(--ink-line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:var(--maxw); margin:0 auto;
+    color:var(--paper);
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{width:38px; height:38px; flex-shrink:0;}
+  .brand-text{display:flex; flex-direction:column; line-height:1.15;}
+  .brand-text .name{font-family:'Fraunces',serif; font-weight:700; font-size:20px; letter-spacing:0.01em; color:var(--paper);}
+  .brand-text .sub{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; color:var(--gold-bright); text-transform:uppercase;}
+
+  .nav-links{display:flex; align-items:center; gap:32px; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    font-size:14px; font-weight:500; color:var(--paper); opacity:0.82;
+    position:relative; padding:6px 0;
+    transition:opacity .2s var(--ease);
+  }
+  .nav-links a:hover{opacity:1;}
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:0; height:2px; width:0;
+    background:var(--gold-bright); transition:width .25s var(--ease);
+  }
+  .nav-links a:hover::after{width:100%;}
+
+  .nav-cta{
+    font-size:13px; font-weight:600;
+    background:var(--gold); color:var(--ink-deep);
+    padding:10px 20px; border-radius:var(--radius);
+    letter-spacing:0.02em;
+    transition:background .2s var(--ease), transform .2s var(--ease);
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--gold-bright); transform:translateY(-1px);}
+
+  .nav-toggle{display:none; background:none; border:0; color:var(--paper); cursor:pointer; padding:4px;}
+  .nav-toggle svg{width:26px; height:26px;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse 900px 500px at 82% -10%, rgba(201,154,61,0.18), transparent 60%),
+      radial-gradient(ellipse 700px 500px at -5% 110%, rgba(168,70,43,0.16), transparent 60%),
+      var(--ink);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--ink-line);
+  }
+  .hero-inner{
+    max-width:var(--maxw); margin:0 auto; padding:96px 28px 88px;
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+  }
+  .hero-eyebrow{color:var(--gold-bright); margin-bottom:22px;}
+  .hero h1{
+    font-size:clamp(34px,4.6vw,58px);
+    line-height:1.06;
+    color:var(--paper);
+  }
+  .hero h1 em{
+    font-style:normal; color:var(--gold-bright);
+  }
+  .hero p.lead{
+    margin-top:22px; max-width:52ch;
+    font-size:17px; color:#C9D0E2; line-height:1.65;
+  }
+  .hero-actions{display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; font-size:14px; font-weight:600;
+    border-radius:var(--radius); cursor:pointer; border:1px solid transparent;
+    transition:transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+  }
+  .btn-primary{background:var(--gold); color:var(--ink-deep);}
+  .btn-primary:hover{background:var(--gold-bright); transform:translateY(-2px);}
+  .btn-ghost{border-color:rgba(243,239,227,0.35); color:var(--paper);}
+  .btn-ghost:hover{border-color:var(--gold-bright); color:var(--gold-bright); transform:translateY(-2px);}
+
+  .hero-tags{display:flex; gap:10px; flex-wrap:wrap; margin-top:34px;}
+  .tag{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.05em;
+    border:1px solid var(--ink-line); color:var(--ink-mist);
+    padding:7px 12px; border-radius:20px;
+  }
+
+  .hero-panel{
+    position:relative;
+    background:linear-gradient(165deg, rgba(243,239,227,0.06), rgba(243,239,227,0.02));
+    border:1px solid var(--ink-line);
+    border-radius:6px;
+    padding:30px;
+  }
+  .hero-panel .panel-label{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em;
+    color:var(--gold-bright); text-transform:uppercase; margin-bottom:18px; display:block;
+  }
+  .flow-step{
+    display:flex; gap:14px; padding:14px 0;
+    border-top:1px solid var(--ink-line);
+  }
+  .flow-step:first-of-type{border-top:none;}
+  .flow-num{
+    font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-deep);
+    background:var(--gold-bright); width:26px; height:26px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-weight:600;
+  }
+  .flow-text .t{font-size:14.5px; font-weight:600; color:var(--paper);}
+  .flow-text .d{font-size:13px; color:var(--ink-mist); margin-top:3px; line-height:1.5;}
+
+  /* ---------- Section shell ---------- */
+  section{padding:88px 0;}
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-head .eyebrow{color:var(--clay);}
+  .section-head h2{font-size:clamp(26px,3.2vw,38px); margin-top:14px; color:var(--ink);}
+  .section-head p{margin-top:16px; font-size:15.5px; color:#4A4636; line-height:1.7;}
+
+  .panel-dark .section-head .eyebrow{color:var(--gold-bright);}
+  .panel-dark .section-head h2{color:var(--paper);}
+  .panel-dark .section-head p{color:var(--ink-mist);}
+
+  /* ---------- About / stats-free feature row ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:start;
+  }
+  .about-copy p{font-size:16px; line-height:1.8; color:#3A3628; margin:0 0 16px;}
+  .value-list{list-style:none; margin:28px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .value-list li{
+    font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.04em;
+    border-left:2px solid var(--gold); padding:8px 0 8px 14px; color:var(--ink);
+  }
+
+  .about-visual{
+    background:var(--ink); border-radius:6px; padding:34px; color:var(--paper);
+    position:relative; overflow:hidden;
+  }
+  .about-visual::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 90% 10%, rgba(201,154,61,0.22), transparent 55%);
+    pointer-events:none;
+  }
+  .stat-row{display:flex; justify-content:space-between; gap:16px; position:relative;}
+  .stat-row + .stat-row{margin-top:26px; padding-top:26px; border-top:1px solid var(--ink-line);}
+  .stat-label{font-size:14px; color:var(--paper); font-weight:600;}
+  .stat-desc{font-size:12.5px; color:var(--ink-mist); margin-top:4px; max-width:22ch;}
+
+  /* ---------- Services ---------- */
+  .service-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--ink-line); border:1px solid var(--paper-dim);
+  }
+  .service-card{
+    background:var(--paper); padding:32px 26px; position:relative;
+    transition:background .25s var(--ease);
+  }
+  .service-card:hover{background:#EDE7D6;}
+  .service-num{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--clay);
+    letter-spacing:0.06em;
+  }
+  .service-card h3{font-size:18px; margin-top:16px; color:var(--ink);}
+  .service-card p{font-size:13.5px; color:#5A5544; margin-top:10px; line-height:1.6;}
+  .service-card a.svc-link{
+    display:inline-flex; align-items:center; gap:6px; margin-top:18px;
+    font-size:12.5px; font-weight:600; color:var(--clay);
+  }
+  .service-card a.svc-link svg{width:13px; height:13px; transition:transform .2s var(--ease);}
+  .service-card a.svc-link:hover svg{transform:translate(3px,-3px);}
+
+  /* ---------- Alur akses (process) ---------- */
+  .flow-track{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:0; position:relative; margin-top:10px;
+  }
+  .flow-track::before{
+    content:""; position:absolute; top:19px; left:6%; right:6%; height:1px;
+    background:repeating-linear-gradient(90deg, var(--ink-line) 0 8px, transparent 8px 14px);
+  }
+  .flow-item{position:relative; padding:0 14px 0 0;}
+  .flow-dot{
+    width:38px; height:38px; border-radius:50%; background:var(--ink); color:var(--gold-bright);
+    display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace;
+    font-size:13px; font-weight:600; position:relative; z-index:2; border:3px solid var(--paper);
+  }
+  .flow-item h4{font-size:15px; margin-top:18px; color:var(--ink);}
+  .flow-item p{font-size:13px; color:#5A5544; margin-top:8px; line-height:1.55;}
+
+  /* ---------- Layanan pendukung list ---------- */
+  .support-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+  }
+  .support-item{
+    display:flex; align-items:flex-start; gap:12px;
+    background:var(--paper); border:1px solid var(--paper-dim); border-radius:4px; padding:16px 18px;
+  }
+  .support-item .dot{width:7px; height:7px; border-radius:50%; background:var(--clay); margin-top:7px; flex-shrink:0;}
+  .support-item span{font-size:14px; color:var(--ink); font-weight:500;}
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background:var(--ink); color:var(--paper); border-radius:8px; padding:56px;
+    display:flex; justify-content:space-between; align-items:center; gap:40px; flex-wrap:wrap;
+    position:relative; overflow:hidden;
+  }
+  .cta-band::after{
+    content:""; position:absolute; right:-60px; top:-60px; width:220px; height:220px;
+    background:radial-gradient(circle, rgba(201,154,61,0.25), transparent 70%);
+  }
+  .cta-band h2{font-size:clamp(24px,3vw,32px); max-width:20ch; color:var(--paper);}
+  .cta-band p{color:var(--ink-mist); margin-top:10px; font-size:14.5px;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink-deep); color:var(--ink-mist); padding:64px 0 28px;}
+  .footer-grid{
+    display:grid; grid-template-columns:1.3fr 0.9fr 0.9fr 0.9fr; gap:40px;
+    padding-bottom:44px; border-bottom:1px solid var(--ink-line);
+  }
+  .footer-brand .name{font-family:'Fraunces',serif; font-size:20px; color:var(--paper); font-weight:700;}
+  .footer-brand p{font-size:13.5px; margin-top:14px; line-height:1.7; max-width:34ch;}
+  .footer-col h5{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--gold-bright); margin-bottom:16px; font-weight:500;
+  }
+  .footer-col ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .footer-col a{font-size:13.5px; color:var(--ink-mist); transition:color .2s var(--ease);}
+  .footer-col a:hover{color:var(--paper);}
+  .social-row{display:flex; gap:10px; margin-top:6px;}
+  .social-row a{
+    width:34px; height:34px; border-radius:50%; border:1px solid var(--ink-line);
+    display:flex; align-items:center; justify-content:center; transition:border-color .2s var(--ease), color .2s var(--ease);
+  }
+  .social-row a:hover{border-color:var(--gold-bright); color:var(--gold-bright);}
+  .social-row svg{width:15px; height:15px;}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center; padding-top:24px;
+    font-size:12.5px; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- Kurikulum Kelas (LMS viewer) ---------- */
+  .course-shell{
+    display:grid; grid-template-columns:380px 1fr; gap:0;
+    border:1px solid var(--paper-dim); border-radius:8px; overflow:hidden;
+    background:var(--paper); box-shadow:0 24px 60px -30px rgba(23,39,70,0.35);
+  }
+  .course-sidebar{
+    background:var(--paper); border-right:1px solid var(--paper-dim);
+    max-height:640px; overflow-y:auto;
+  }
+  .course-head{
+    padding:24px 24px 20px; border-bottom:1px solid var(--paper-dim);
+    position:sticky; top:0; background:var(--paper); z-index:2;
+  }
+  .course-head .course-eyebrow{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--clay); display:block; margin-bottom:8px;
+  }
+  .course-head h3{font-size:17px; color:var(--ink); line-height:1.3;}
+  .course-meta{
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--ink-mist);
+    margin-top:10px; display:flex; align-items:center; gap:6px;
+  }
+  .course-meta .sep{width:3px; height:3px; border-radius:50%; background:var(--ink-mist); display:inline-block;}
+  .course-progress{
+    height:6px; border-radius:6px; background:var(--paper-dim); margin-top:14px; overflow:hidden;
+  }
+  .course-progress > span{
+    display:block; height:100%; width:0%;
+    background:linear-gradient(90deg, var(--clay), var(--gold));
+    transition:width .4s var(--ease);
+  }
+  .course-progress-label{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink); margin-top:6px; text-align:right;
+  }
+
+  .course-day{border-bottom:1px solid var(--paper-dim);}
+  .course-day summary{
+    list-style:none; cursor:pointer; padding:16px 24px;
+    display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+  }
+  .course-day summary::-webkit-details-marker{display:none;}
+  .course-day summary .cd-title{font-size:14.5px; font-weight:600; color:var(--ink); line-height:1.35;}
+  .course-day summary .cd-count{
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--ink-mist); margin-top:4px; display:block;
+  }
+  .course-day summary .cd-chevron{
+    flex-shrink:0; width:20px; height:20px; color:var(--ink-mist);
+    transition:transform .2s var(--ease); margin-top:2px;
+  }
+  .course-day[open] summary .cd-chevron{transform:rotate(180deg);}
+  .course-day[open] summary{background:var(--paper-dim);}
+
+  .course-steps{list-style:none; margin:0; padding:2px 24px 18px; display:flex; flex-direction:column; gap:2px;}
+  .course-steps li{
+    display:flex; align-items:flex-start; gap:12px;
+    padding:9px 0; font-size:13.5px; color:var(--text-on-paper);
+  }
+  .cd-check{
+    flex-shrink:0; width:19px; height:19px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+  .cd-check svg{width:11px; height:11px;}
+
+  .step-locked{color:var(--ink-mist); cursor:not-allowed;}
+  .step-locked .cd-check{background:var(--paper-dim); color:var(--ink-mist); border:1px solid var(--paper-dim);}
+  .step-locked .cd-check svg{width:10px; height:10px;}
+
+  .step-current{color:var(--ink); cursor:pointer; font-weight:600;}
+  .step-current .cd-check{background:transparent; border:2px solid var(--gold); color:var(--gold);}
+  .step-current:hover .cd-check{background:rgba(201,154,61,0.15);}
+  .step-current:hover{color:var(--clay);}
+
+  .step-done{color:var(--text-on-paper); cursor:default;}
+  .step-done .cd-check{background:var(--ink); color:var(--paper); border:1px solid var(--ink);}
+  .course-panel{
+    background:linear-gradient(165deg, var(--ink), var(--ink-deep));
+    color:var(--paper); padding:36px; display:flex; flex-direction:column;
+  }
+  .course-panel-badge{
+    font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold-bright);
+    display:flex; align-items:center; gap:8px;
+  }
+  .course-panel-frame{
+    flex:1; margin-top:22px; border:1px dashed rgba(243,239,227,0.25); border-radius:6px;
+    display:flex; align-items:center; justify-content:center; text-align:center; padding:40px 28px;
+    background:rgba(243,239,227,0.03); min-height:340px;
+  }
+  .course-panel-frame .cp-inner{max-width:34ch;}
+  .course-panel-frame:has(.pform){align-items:flex-start; text-align:left; padding:32px;}
+  .course-panel-frame .cp-inner:has(.pform){max-width:440px; width:100%;}
+  .course-panel-frame h4{color:var(--paper); font-size:19px;}
+  .course-panel-frame p{color:var(--ink-mist); font-size:13.5px; margin-top:10px; line-height:1.6;}
+  .course-panel-note{
+    margin-top:20px; font-size:13px; color:var(--gold-bright);
+    border-top:1px solid var(--ink-line); padding-top:16px;
+  }
+  @media (max-width:980px){
+    .course-shell{grid-template-columns:1fr;}
+    .course-sidebar{max-height:480px; order:2;}
+    .course-panel{order:1; min-height:220px;}
+  }
+
+  /* ---------- Auth Modal (Daftar / Log In) ---------- */
+  .auth-overlay{
+    position:fixed; inset:0; z-index:1000;
+    background:rgba(12,21,38,0.55); backdrop-filter:blur(3px);
+    display:none; align-items:flex-start; justify-content:center;
+    padding:48px 20px; overflow-y:auto;
+  }
+  .auth-overlay.is-open{display:flex;}
+  .auth-card{
+    position:relative; width:100%; max-width:440px;
+    background:#FFFFFF; border-radius:4px;
+    padding:44px 40px 40px;
+    box-shadow:0 30px 70px -25px rgba(12,21,38,0.55);
+    border-top:3px solid var(--gold);
+    animation:auth-in .35s var(--ease);
+  }
+  @keyframes auth-in{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+  .auth-close{
+    position:absolute; top:16px; right:16px; width:32px; height:32px;
+    border:none; background:transparent; cursor:pointer; color:var(--ink-mist);
+    display:flex; align-items:center; justify-content:center; border-radius:50%;
+    transition:background .2s var(--ease), color .2s var(--ease);
+  }
+  .auth-close:hover{background:var(--paper-dim); color:var(--ink);}
+  .auth-close svg{width:18px; height:18px;}
+  .auth-chevrons{display:flex; gap:2px; margin-bottom:18px;}
+  .auth-chevrons svg{width:26px; height:26px; color:var(--ink);}
+  .auth-brand{
+    font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600;
+    letter-spacing:0.04em; color:var(--ink); text-decoration:underline;
+    text-underline-offset:5px; text-decoration-color:var(--gold);
+    display:inline-block; margin-bottom:22px;
+  }
+  .auth-title{
+    font-family:'Bebas Neue',sans-serif; font-weight:400;
+    font-size:44px; letter-spacing:0.01em; color:var(--ink-deep); line-height:1;
+  }
+  .auth-sub{font-size:14.5px; color:var(--ink-soft); margin-top:12px;}
+  .auth-sub button{
+    background:none; border:none; padding:0; cursor:pointer;
+    color:#3E7CE0; font-weight:600; font-size:14.5px; font-family:inherit;
+  }
+  .auth-sub button:hover{text-decoration:underline;}
+  .auth-fields{margin-top:28px; display:flex; flex-direction:column; gap:26px;}
+  .auth-field{position:relative;}
+  .auth-field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--ink-deep);
+    background:transparent; padding:6px 2px 10px; font-size:15px;
+    font-family:'Instrument Sans',sans-serif; color:var(--ink-deep); outline:none;
+  }
+  .auth-field input::placeholder{color:var(--gold);}
+  .auth-field.accent input{border-bottom-color:var(--clay-bright);}
+  .auth-field input:focus{border-bottom-color:var(--gold);}
+  .auth-submit{
+    width:100%; margin-top:34px; padding:15px; border:none; cursor:pointer;
+    background:var(--ink-deep); color:var(--paper); font-size:14px; font-weight:600;
+    letter-spacing:0.03em; border-radius:2px;
+    transition:background .2s var(--ease), transform .2s var(--ease);
+  }
+  .auth-submit:hover{background:var(--ink); transform:translateY(-1px);}
+  .auth-form{display:none;}
+  .auth-form.is-active{display:block;}
+  .auth-note{font-size:12px; color:var(--ink-mist); margin-top:16px; text-align:center;}
+  .auth-field select{
+    width:100%; border:none; border-bottom:1.5px solid var(--ink-deep);
+    background:transparent; padding:6px 2px 10px; font-size:15px;
+    font-family:'Instrument Sans',sans-serif; color:var(--ink-deep); outline:none;
+  }
+  .auth-error{
+    display:none; margin-top:16px; font-size:13px; color:#A8462B;
+    background:rgba(168,70,43,0.1); border:1px solid rgba(168,70,43,0.28);
+    border-radius:4px; padding:9px 12px;
+  }
+  .auth-error.show{display:block;}
+
+  /* ---------- Kelas Online (dinamis) ---------- */
+  .kelas-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; margin-top:8px;}
+  .kelas-card{
+    background:#fff; border:1px solid var(--paper-dim); border-radius:8px;
+    padding:22px 22px 20px; position:relative;
+  }
+  .kelas-card-status{position:absolute; top:20px; right:20px;}
+  .kelas-card h3{font-size:16.5px; color:var(--ink); line-height:1.35; max-width:82%; margin-top:2px;}
+  .kelas-card-meta{
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--ink-mist);
+    margin-top:14px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  }
+  .kelas-card-meta .sep{width:3px; height:3px; border-radius:50%; background:var(--ink-mist); display:inline-block;}
+  .kelas-card-dates{font-size:12.5px; color:var(--ink-soft); margin-top:8px;}
+  .kelas-card-actions{display:flex; gap:8px; margin-top:18px; flex-wrap:wrap;}
+
+  .kt-group-title{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--ink-soft); padding:16px 24px 6px;
+  }
+  .kt-list{padding:2px 12px 18px !important;}
+  .kt-list li{
+    display:flex; flex-direction:column; gap:3px; padding:10px 12px; border-radius:6px;
+    cursor:pointer; font-size:13.5px; color:var(--ink);
+  }
+  .kt-list li:hover{background:var(--paper-dim);}
+  .kt-list .kt-title{font-weight:600;}
+  .kt-list .kt-sub{font-size:11.5px; color:var(--ink-mist); font-family:'JetBrains Mono',monospace;}
+  .kt-empty{color:var(--ink-mist); font-style:italic; font-size:13px; padding:10px 12px !important; cursor:default !important;}
+  .kt-badge{
+    align-self:flex-start; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.05em;
+    text-transform:uppercase; padding:2px 8px; border-radius:10px; font-weight:600;
+  }
+  .kt-synchronous{background:#DCE7FB; color:#2b5cc4;}
+  .kt-asynchronous{background:#F5E6C4; color:#8a6a1f;}
+  .kt-dokumen, .kt-video{background:#DCEEE0; color:#3d6b4c;}
+  .kt-tugas, .kt-kumpultugas{background:#EFE1F5; color:#6b3f8a;}
+  .kt-presensi{background:#DDEFF5; color:#22697f;}
+  .kt-evaluasipengajar, .kt-evaluasicoach, .kt-evaluasimentor, .kt-evaluasipenguji{background:#F6DAD3; color:#8a3620;}
+  .kt-survey{background:#EAEAF5; color:#4a4a8a;}
+  .kt-done-flag{
+    display:inline-flex; align-items:center; gap:4px; font-family:'JetBrains Mono',monospace;
+    font-size:10.5px; color:#3d6b4c; margin-left:8px; font-weight:600;
+  }
+  .kt-note{color:var(--gold-bright); font-size:13px; margin-top:4px;}
+  .kt-detail-box{
+    background:rgba(243,239,227,0.06); border:1px dashed rgba(243,239,227,0.25);
+    border-radius:6px; padding:14px 16px; margin-top:14px;
+  }
+  .kt-detail-label{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase;
+    letter-spacing:0.06em; color:var(--gold-bright); display:block; margin-bottom:6px;
+  }
+  .kt-status{
+    display:inline-block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.05em;
+    text-transform:uppercase; padding:2px 9px; border-radius:10px; font-weight:600;
+  }
+  .kt-status-ok{background:#DCEEE0; color:#3d6b4c;}
+  .kt-status-warn{background:#F5E6C4; color:#8a6a1f;}
+  .kt-status-bad{background:#F6DAD3; color:#8a3620;}
+  .klink-btn{
+    display:inline-flex; align-items:center; gap:6px; padding:11px 18px; border-radius:6px;
+    background:var(--gold); color:var(--ink-deep); font-size:13.5px; font-weight:600;
+    transition:background .2s var(--ease), transform .2s var(--ease);
+  }
+  .klink-btn:hover{background:var(--gold-bright); transform:translateY(-1px);}
+
+  /* ---------- Beranda Peserta ---------- */
+  .pd-list{display:flex; flex-direction:column; gap:12px;}
+  .pd-item{
+    background:#fff; border:1px solid var(--paper-dim); border-radius:8px;
+    padding:18px 20px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px;
+  }
+  .pd-item-main{flex:1; min-width:220px;}
+  .pd-item-main h4{font-size:15px; color:var(--ink); margin-top:8px;}
+  .pd-item-main .kt-sub{display:block; margin-top:4px;}
+  .pd-item-main .kt-note-inline{margin-top:8px; font-size:13px; color:var(--ink-soft); line-height:1.55;}
+  .pd-empty{color:var(--ink-mist); font-style:italic; font-size:14px;}
+
+  /* ---------- Formulir interaktif peserta (presensi/evaluasi/survey) ---------- */
+  .pform{display:flex; flex-direction:column; gap:12px; text-align:left; max-width:100%;}
+  .pform-field{display:flex; flex-direction:column; gap:5px;}
+  .pform-field label{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--gold-bright);
+  }
+  .pform-field input, .pform-field select, .pform-field textarea{
+    background:rgba(243,239,227,0.06); border:1px solid rgba(243,239,227,0.25); border-radius:6px;
+    padding:10px 12px; font-size:13.5px; color:var(--paper); font-family:'Instrument Sans',sans-serif;
+  }
+  .pform-field input:read-only{color:var(--ink-mist); background:rgba(243,239,227,0.03);}
+  .pform-field textarea{min-height:78px; resize:vertical;}
+  .pform-field select option{color:#1D1A12;}
+  .pform-field input:focus, .pform-field select:focus, .pform-field textarea:focus{
+    outline:none; border-color:var(--gold-bright);
+  }
+  .pform-submit{
+    align-self:flex-start; margin-top:4px; border:none; cursor:pointer;
+    font-family:'Instrument Sans',sans-serif;
+  }
+  .pform-hint{font-size:12.5px; color:var(--ink-mist); margin-top:2px;}
+  .pform-aspects{display:flex; flex-direction:column; gap:10px; margin-top:4px;}
+  .pform-aspect-row{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    border-bottom:1px solid rgba(243,239,227,0.14); padding-bottom:8px;
+  }
+  .pform-aspect-row span{font-size:13px; color:var(--paper); flex:1;}
+  .pform-aspect-row select{max-width:180px;}
+  .pform-done{
+    background:rgba(243,239,227,0.06); border:1px solid rgba(243,239,227,0.25);
+    border-radius:6px; padding:16px 18px; margin-top:14px; text-align:left;
+  }
+  .pform-done .ok-flag{color:#8fd4a8; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.06em;}
+  .pform-done h5{color:var(--paper); font-size:14.5px; margin-top:8px;}
+  .pform-done p{color:var(--ink-mist); font-size:13px; margin-top:6px; line-height:1.55;}
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:980px){
+    .hero-inner{grid-template-columns:1fr; padding-top:64px;}
+    .about-grid{grid-template-columns:1fr;}
+    .service-grid{grid-template-columns:repeat(2,1fr);}
+    .flow-track{grid-template-columns:repeat(2,1fr); row-gap:36px;}
+    .flow-track::before{display:none;}
+    .support-grid{grid-template-columns:1fr 1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr; row-gap:32px;}
+  }
+  @media (max-width:720px){
+    .nav-links, .nav-cta{display:none;}
+    .nav-toggle{display:block;}
+    .nav.open .nav-links{
+      display:flex; position:absolute; top:100%; left:0; right:0; background:var(--ink);
+      flex-direction:column; padding:20px 28px; gap:18px; border-bottom:1px solid var(--ink-line);
+    }
+    .nav.open .nav-cta{display:inline-flex; margin:0 28px 20px;}
+    .value-list{grid-template-columns:1fr;}
+    .service-grid{grid-template-columns:1fr;}
+    .support-grid{grid-template-columns:1fr;}
+    .cta-band{flex-direction:column; align-items:flex-start; padding:36px 26px;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+
+/* ---------- Nav aktif & tautan admin ---------- */
+.nav-links a.is-current{
+  color:var(--gold-bright);
+  position:relative;
+}
+.footer-admin-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  letter-spacing:0.06em;
+  color:var(--ink-mist);
+  opacity:0.85;
+  margin-top:14px;
+}
+.footer-admin-link:hover{ color:var(--gold-bright); opacity:1; }
+
+/* ===== admin.css ===== */
+
+/* Admin panel — mewarisi variabel warna dari ../../assets/style.css */
+
+.admin-body{
+  min-height:100vh;
+  background:var(--paper);
+}
+
+/* ---------- Login ---------- */
+.admin-login-wrap{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(201,154,61,0.10), transparent),
+    var(--ink);
+}
+.admin-login-card{
+  width:100%;
+  max-width:400px;
+  background:var(--paper);
+  border-radius:var(--radius);
+  padding:40px 34px 32px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.35);
+}
+.admin-login-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:26px;
+}
+.admin-login-brand .name{
+  font-family:'Fraunces',serif;
+  font-weight:700;
+  font-size:20px;
+  color:var(--ink);
+}
+.admin-login-brand .sub{
+  display:block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--ink-mist);
+}
+.admin-login-card h1{
+  font-size:26px;
+  color:var(--text-on-paper);
+  margin-bottom:6px;
+}
+.admin-login-card .lead-sm{
+  color:var(--ink-soft);
+  font-size:14px;
+  margin-bottom:26px;
+}
+.admin-field{
+  margin-bottom:16px;
+}
+.admin-field label{
+  display:block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin-bottom:6px;
+}
+.admin-field input{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid rgba(23,39,70,0.18);
+  border-radius:var(--radius);
+  background:#fff;
+  font-family:'Instrument Sans',sans-serif;
+  font-size:15px;
+  color:var(--text-on-paper);
+}
+.admin-field input:focus{
+  outline:2px solid var(--gold);
+  outline-offset:1px;
+}
+.admin-submit{
+  width:100%;
+  padding:13px 18px;
+  border:none;
+  border-radius:var(--radius);
+  background:var(--ink);
+  color:var(--paper);
+  font-family:'Instrument Sans',sans-serif;
+  font-weight:600;
+  font-size:15px;
+  cursor:pointer;
+  transition:background 0.2s var(--ease);
+}
+.admin-submit:hover{ background:var(--clay); }
+.admin-error{
+  background:rgba(168,70,43,0.12);
+  color:var(--clay);
+  border:1px solid rgba(168,70,43,0.3);
+  border-radius:var(--radius);
+  padding:10px 14px;
+  font-size:13px;
+  margin-bottom:16px;
+  display:none;
+}
+.admin-error.show{ display:block; }
+.admin-hint{
+  margin-top:22px;
+  font-size:12px;
+  color:var(--ink-mist);
+  text-align:center;
+}
+.admin-back{
+  display:inline-block;
+  margin-top:18px;
+  font-size:13px;
+  color:var(--ink-mist);
+}
+.admin-back:hover{ color:var(--gold); }
+
+/* ---------- Dashboard shell ---------- */
+.admin-shell{
+  display:grid;
+  grid-template-columns:240px 1fr;
+  min-height:100vh;
+}
+.admin-sidebar{
+  background:var(--ink);
+  color:var(--paper);
+  padding:22px 18px;
+  display:flex;
+  flex-direction:column;
+}
+.admin-sidebar .brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:6px 8px 22px;
+  border-bottom:1px solid var(--ink-line);
+  margin-bottom:16px;
+}
+.admin-sidebar .brand .name{ font-family:'Fraunces',serif; font-weight:700; font-size:17px; color:var(--paper); }
+.admin-sidebar .brand .sub{ display:block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.08em; color:var(--ink-mist); text-transform:uppercase; }
+
+.admin-nav{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px; flex:1; }
+.admin-nav button{
+  width:100%;
+  text-align:left;
+  padding:11px 12px;
+  border:none;
+  background:transparent;
+  color:var(--ink-mist);
+  font-family:'Instrument Sans',sans-serif;
+  font-size:14px;
+  font-weight:500;
+  border-radius:var(--radius);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  transition:background 0.15s, color 0.15s;
+}
+.admin-nav button:hover{ background:rgba(255,255,255,0.06); color:var(--paper); }
+.admin-nav button.active{ background:var(--gold); color:var(--ink-deep); font-weight:600; }
+.admin-nav button svg{ width:17px; height:17px; flex-shrink:0; }
+
+.admin-logout{
+  margin-top:12px;
+  padding-top:14px;
+  border-top:1px solid var(--ink-line);
+}
+.admin-logout button{
+  width:100%;
+  padding:10px 12px;
+  background:rgba(168,70,43,0.16);
+  color:var(--clay-bright);
+  border:none;
+  border-radius:var(--radius);
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+}
+.admin-logout button:hover{ background:rgba(168,70,43,0.28); }
+
+.admin-main{
+  padding:30px 36px 60px;
+  overflow-x:hidden;
+}
+.admin-topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:26px;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.admin-topbar h1{ font-size:24px; color:var(--text-on-paper); }
+.admin-topbar .who{ font-size:13px; color:var(--ink-soft); }
+
+.admin-stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
+  gap:14px;
+  margin-bottom:28px;
+}
+.admin-stat{
+  background:#fff;
+  border:1px solid rgba(23,39,70,0.10);
+  border-radius:var(--radius);
+  padding:16px 18px;
+}
+.admin-stat .n{ font-family:'Fraunces',serif; font-size:28px; font-weight:700; color:var(--ink); }
+.admin-stat .l{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-mist); margin-top:2px; }
+
+.admin-panel{ display:none; }
+.admin-panel.active{ display:block; }
+
+.admin-panel-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:16px;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.admin-panel-head h2{ font-size:19px; color:var(--text-on-paper); }
+.admin-panel-head p{ font-size:13px; color:var(--ink-soft); margin-top:2px; }
+
+.admin-btn{
+  padding:10px 16px;
+  border:none;
+  border-radius:var(--radius);
+  background:var(--ink);
+  color:var(--paper);
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.admin-btn:hover{ background:var(--clay); }
+.admin-btn.ghost{
+  background:transparent;
+  color:var(--ink);
+  border:1px solid rgba(23,39,70,0.25);
+}
+.admin-btn.ghost:hover{ background:rgba(23,39,70,0.06); }
+.admin-btn.small{ padding:6px 10px; font-size:12px; }
+.admin-btn.danger{ background:var(--clay); }
+.admin-btn.danger:hover{ background:#8a3620; }
+
+.admin-table-wrap{
+  background:#fff;
+  border:1px solid rgba(23,39,70,0.10);
+  border-radius:var(--radius);
+  overflow-x:auto;
+}
+table.admin-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13.5px;
+}
+table.admin-table th{
+  text-align:left;
+  padding:12px 14px;
+  background:var(--paper-dim);
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  white-space:nowrap;
+}
+table.admin-table td{
+  padding:11px 14px;
+  border-top:1px solid rgba(23,39,70,0.08);
+  color:var(--text-on-paper);
+  vertical-align:top;
+}
+table.admin-table tr:hover td{ background:rgba(201,154,61,0.06); }
+.admin-actions{ display:flex; gap:6px; flex-wrap:nowrap; }
+.badge{
+  display:inline-block;
+  padding:3px 9px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:600;
+  font-family:'JetBrains Mono',monospace;
+}
+.badge.ok{ background:rgba(74,124,89,0.15); color:#3d6b4c; }
+.badge.warn{ background:rgba(201,154,61,0.18); color:#8a6a1f; }
+.badge.bad{ background:rgba(168,70,43,0.14); color:var(--clay); }
+.empty-row td{ text-align:center; color:var(--ink-mist); padding:26px; font-style:italic; }
+
+/* ---------- Modal form ---------- */
+.admin-modal-overlay{
+  position:fixed; inset:0;
+  background:rgba(12,21,38,0.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:200;
+}
+.admin-modal-overlay.is-open{ display:flex; }
+.admin-modal{
+  background:var(--paper);
+  border-radius:var(--radius);
+  width:100%;
+  max-width:480px;
+  max-height:90vh;
+  overflow-y:auto;
+  padding:28px 26px;
+}
+.admin-modal h3{ font-size:19px; margin-bottom:16px; color:var(--text-on-paper); }
+.admin-modal-actions{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  margin-top:6px;
+}
+.admin-field select, .admin-field textarea{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid rgba(23,39,70,0.18);
+  border-radius:var(--radius);
+  background:#fff;
+  font-family:'Instrument Sans',sans-serif;
+  font-size:14px;
+  color:var(--text-on-paper);
+}
+.admin-field textarea{ resize:vertical; min-height:70px; }
+
+.toast{
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  background:var(--ink);
+  color:var(--paper);
+  padding:12px 18px;
+  border-radius:var(--radius);
+  font-size:13px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity 0.25s, transform 0.25s;
+  pointer-events:none;
+  z-index:300;
+}
+.toast.show{ opacity:1; transform:translateY(0); }
+
+@media (max-width: 860px){
+  .admin-shell{ grid-template-columns:1fr; }
+  .admin-sidebar{
+    position:sticky; top:0; z-index:50;
+    flex-direction:row;
+    align-items:center;
+    overflow-x:auto;
+    padding:12px 14px;
+  }
+  .admin-sidebar .brand{ display:none; }
+  .admin-nav{ flex-direction:row; }
+  .admin-logout{ border:none; margin:0 0 0 8px; padding:0; }
+  .admin-main{ padding:20px 16px 50px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="ikat-band"></div>
+  <nav class="nav" id="siteNav">
+    <a href="index.html" class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="64" height="64" rx="10" fill="#172746"/>
+        <path d="M13 41 L25 19 L32 32 L39 19 L51 41" stroke="#E3B75B" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13 41 H51" stroke="#A8462B" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-text">
+        <span class="name">SIPIJAR</span>
+        <span class="sub">BPSDMD Provinsi NTT</span>
+      </span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="tentang.html">Tentang</a></li>
+      <li><a href="layanan.html">Layanan</a></li>
+      <li><a href="kelas.html">Kelas Online</a></li>
+      <li><a href="panduan.html">Panduan &amp; Survey</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+    </ul>
+
+    <a class="nav-cta" href="#" data-open-auth>Masuk ke LMS</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Buka menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+
+<div class="spa-page" id="page-index">
+<main>
+<section class="hero" id="beranda" style="padding:0;">
+    <div class="hero-inner">
+      <div>
+        <span class="eyebrow hero-eyebrow">Learning Management System · BPSDMD Provinsi NTT</span>
+        <h1>Satu jalur belajar untuk <em>aparatur NTT</em> yang lebih siap.</h1>
+        <p class="lead">SIPIJAR — Sistem Pelatihan dan Pembelajaran Terintegrasi — menghubungkan orientasi, materi, evaluasi, hingga sertifikasi peserta pelatihan Badan Pengembangan Sumber Daya Manusia Daerah Provinsi Nusa Tenggara Timur dalam satu platform.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary" data-open-auth>Masuk ke LMS SIPIJAR</a>
+          <a href="#alur" class="btn btn-ghost">Lihat Panduan Akses</a>
+        </div>
+        <div class="hero-tags">
+          <span class="tag">TERINTEGRASI</span>
+          <span class="tag">BLENDED LEARNING</span>
+          <span class="tag">BERBASIS KOMPETENSI</span>
+          <span class="tag">AKSES DARING</span>
+        </div>
+      </div>
+
+      <div class="hero-panel reveal">
+        <span class="panel-label">Alur peserta baru</span>
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <div class="flow-text">
+            <div class="t">Registrasi data peserta</div>
+            <div class="d">Lengkapi data diri sesuai angkatan dan jadwal pelatihan.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <div class="flow-text">
+            <div class="t">Orientasi nilai &amp; etika</div>
+            <div class="d">Pengenalan nilai kelembagaan sebelum masuk ke materi inti.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <div class="flow-text">
+            <div class="t">Akses kelas &amp; materi</div>
+            <div class="d">Belajar mandiri maupun terjadwal bersama pengajar dan coach.</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <div class="flow-text">
+            <div class="t">Evaluasi &amp; sertifikat</div>
+            <div class="d">Isi evaluasi penyelenggaraan, unduh STTP/sertifikat kelulusan.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</div>
+
+<div class="spa-page" id="page-tentang" hidden>
+<main>
+<section id="tentang">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="reveal">
+          <span class="eyebrow" style="color:var(--clay);">Tentang SIPIJAR</span>
+          <h2 style="margin-top:14px; font-size:clamp(24px,3vw,32px); color:var(--ink);">Inovasi pembelajaran BPSDMD Provinsi NTT</h2>
+          <div class="about-copy" style="margin-top:20px;">
+            <p>SIPIJAR dikembangkan sebagai layanan pelatihan milik Badan Pengembangan Sumber Daya Manusia Daerah (BPSDMD) Provinsi Nusa Tenggara Timur untuk mendukung pengembangan kompetensi Aparatur Sipil Negara secara lebih terarah.</p>
+            <p>Platform ini menyatukan proses yang selama ini terpisah — pendaftaran peserta, orientasi nilai dan etika, penyampaian materi, hingga evaluasi dan penerbitan sertifikat — ke dalam satu alur pembelajaran campuran (blended learning) yang dapat diakses kapan saja.</p>
+          </div>
+          <ul class="value-list">
+            <li>Profesional</li>
+            <li>Responsif</li>
+            <li>Inovatif</li>
+            <li>Bermutu &amp; Akuntabel</li>
+          </ul>
+        </div>
+
+        <div class="about-visual reveal">
+          <div class="stat-row">
+            <div>
+              <div class="stat-label">Orientasi Nilai &amp; Etika</div>
+              <div class="stat-desc">Pengantar wajib sebelum peserta memulai kelas inti.</div>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div>
+              <div class="stat-label">Kelas Terjadwal &amp; Mandiri</div>
+              <div class="stat-desc">Kombinasi sesi bersama pengajar dan belajar mandiri.</div>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div>
+              <div class="stat-label">Evaluasi Multi-Pihak</div>
+              <div class="stat-desc">Penilaian pengajar, coach, penguji, mentor, dan penyelenggara.</div>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div>
+              <div class="stat-label">Sertifikasi Digital</div>
+              <div class="stat-desc">Unduh STTP dan sertifikat kelulusan langsung dari sistem.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</div>
+
+<div class="spa-page" id="page-layanan" hidden>
+<main>
+<section id="layanan" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Layanan Utama</span>
+        <h2>Empat pintu masuk, satu platform</h2>
+        <p>Navigasi utama SIPIJAR dirancang agar peserta, pengajar, dan penyelenggara pelatihan dapat menemukan layanan yang dibutuhkan tanpa berpindah sistem.</p>
+      </div>
+    </div>
+    <div class="wrap" style="padding:0;">
+      <div class="service-grid reveal">
+        <div class="service-card">
+          <span class="service-num">01</span>
+          <h3>Beranda</h3>
+          <p>Ringkasan informasi, pengumuman, dan agenda pelatihan yang sedang berjalan.</p>
+          <a class="svc-link" href="https://www.sipijarbpsdmntt.com" target="_blank" rel="noopener">Buka halaman
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="service-card">
+          <span class="service-num">02</span>
+          <h3>Kelas Online</h3>
+          <p>Ruang belajar digital berisi materi, penugasan, dan interaksi dengan pengajar per angkatan.</p>
+          <a class="svc-link" href="#kelas">Lihat contoh kurikulum
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="service-card">
+          <span class="service-num">03</span>
+          <h3>Panduan &amp; Survey</h3>
+          <p>Petunjuk teknis penggunaan sistem serta formulir evaluasi dan survey kepuasan peserta.</p>
+          <a class="svc-link" href="https://www.sipijarbpsdmntt.com/panduan-survey" target="_blank" rel="noopener">Lihat panduan
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="service-card">
+          <span class="service-num">04</span>
+          <h3>Layanan</h3>
+          <p>Dukungan administratif pelatihan, mulai dari data peserta hingga penerbitan sertifikat.</p>
+          <a class="svc-link" href="https://www.sipijarbpsdmntt.com/layanan" target="_blank" rel="noopener">Lihat layanan
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</div>
+
+<div class="spa-page" id="page-kelas" hidden>
+<main>
+<section id="kelas" style="background:var(--paper-dim);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Kelas Online</span>
+        <h2>Semua kelas yang tersedia di SIPIJAR</h2>
+        <p>Pilih kelas Anda, lihat struktur materinya, lalu daftar langsung untuk mulai mengikuti sesi synchronous &amp; asynchronous hingga pengumpulan tugas &mdash; semua dari LMS SIPIJAR.</p>
+      </div>
+
+      <div class="kelas-grid reveal" id="kelasGrid">
+        <p style="color:var(--ink-mist);">Memuat daftar kelas&hellip;</p>
+      </div>
+
+      <div class="course-shell reveal" id="courseShell" style="display:none; margin-top:36px;">
+        <div class="course-sidebar">
+          <div class="course-head">
+            <span class="course-eyebrow" id="courseHeadStatus">&mdash;</span>
+            <h3 id="courseHeadTitle">&mdash;</h3>
+            <div class="course-meta" id="courseHeadMeta"></div>
+            <div class="course-progress"><span id="courseProgressBar" style="width:0%;"></span></div>
+            <div class="course-progress-label" id="courseProgressLabel">0%</div>
+          </div>
+
+          <div id="courseDays"></div>
+        </div>
+
+        <div class="course-panel">
+          <span class="course-panel-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3" stroke-linecap="round"/></svg>
+            Struktur Kelas
+          </span>
+          <div class="course-panel-frame">
+            <div class="cp-inner" id="coursePanelBody">
+              <h4>Pratinjau materi kelas</h4>
+              <p>Pilih salah satu materi atau tugas di sebelah kiri untuk melihat detailnya &mdash; termasuk link Zoom untuk sesi synchronous, detail tugas asynchronous, dan link Drive pengumpulan tugas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pendukung">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Layanan Pendukung</span>
+        <h2>Kebutuhan administratif dalam satu daftar</h2>
+        <p>Selain kelas dan materi, peserta juga dapat mengakses berbagai formulir pendukung penyelenggaraan pelatihan.</p>
+      </div>
+      <div class="support-grid reveal">
+        <div class="support-item"><span class="dot"></span><span>Koreksi Data Peserta</span></div>
+        <div class="support-item"><span class="dot"></span><span>Jadwal Pelatihan</span></div>
+        <div class="support-item"><span class="dot"></span><span>Evaluasi Pengajar &amp; Coach</span></div>
+        <div class="support-item"><span class="dot"></span><span>Evaluasi Penguji &amp; Mentor</span></div>
+        <div class="support-item"><span class="dot"></span><span>Evaluasi Penyelenggara</span></div>
+        <div class="support-item"><span class="dot"></span><span>Pengumpulan Laporan Akhir</span></div>
+        <div class="support-item"><span class="dot"></span><span>Kumpul Executive Summary</span></div>
+        <div class="support-item"><span class="dot"></span><span>Download STTP / Sertifikat</span></div>
+        <div class="support-item"><span class="dot"></span><span>Evaluasi Pasca Pelatihan</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+</div>
+
+<div class="spa-page" id="page-panduan" hidden>
+<main>
+<section id="alur" style="background:var(--paper-dim);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Panduan Akses</span>
+        <h2>Lima langkah menuju sertifikat</h2>
+        <p>Alur umum yang dilalui peserta baru sejak pertama kali masuk ke SIPIJAR hingga menyelesaikan program pelatihan.</p>
+      </div>
+
+      <div class="flow-track reveal">
+        <div class="flow-item">
+          <div class="flow-dot">01</div>
+          <h4>Masuk ke LMS</h4>
+          <p>Akses tautan SIPIJAR yang dibagikan panitia sesuai angkatan pelatihan.</p>
+        </div>
+        <div class="flow-item">
+          <div class="flow-dot">02</div>
+          <h4>Lengkapi data</h4>
+          <p>Isi dan koreksi data peserta, termasuk kebutuhan administratif pelatihan.</p>
+        </div>
+        <div class="flow-item">
+          <div class="flow-dot">03</div>
+          <h4>Ikuti orientasi</h4>
+          <p>Selesaikan orientasi pengenalan nilai dan etika sebagai gerbang awal.</p>
+        </div>
+        <div class="flow-item">
+          <div class="flow-dot">04</div>
+          <h4>Pelajari materi</h4>
+          <p>Akses materi dan tugas sesuai jadwal yang ditetapkan penyelenggara.</p>
+        </div>
+        <div class="flow-item">
+          <div class="flow-dot">05</div>
+          <h4>Evaluasi &amp; unduh</h4>
+          <p>Lengkapi evaluasi terkait, lalu unduh STTP atau sertifikat kelulusan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div>
+          <h2>Siap melanjutkan pelatihan Anda?</h2>
+          <p>Masuk ke LMS SIPIJAR untuk melihat kelas, jadwal, dan materi terbaru dari BPSDMD Provinsi NTT.</p>
+        </div>
+        <a href="#" class="btn btn-primary" data-open-auth>Masuk ke LMS SIPIJAR</a>
+      </div>
+    </div>
+  </section>
+</main>
+</div>
+
+<div class="spa-page" id="page-kontak" hidden>
+<main>
+<section id="kontak" style="padding-bottom:0;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Kontak</span>
+        <h2>Hubungi BPSDMD Provinsi NTT</h2>
+        <p>Informasi kontak, media sosial, dan tautan resmi tersedia lengkap di footer halaman ini.</p>
+      </div>
+    </div>
+  </section>
+</main>
+</div>
+
+<div class="spa-page" id="page-peserta-dashboard" hidden>
+<main>
+<section style="padding-top:150px;">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Beranda Peserta</span>
+        <h2 id="pdWelcome">Selamat datang</h2>
+        <p id="pdKelasSub"></p>
+        <button type="button" id="btnPesertaLogout" class="admin-btn ghost small" style="margin-top:14px;">&larr; Keluar</button>
+      </div>
+
+      <div class="kelas-card" id="pdKelasCard" style="max-width:540px; margin-bottom:36px;"></div>
+
+      <div class="course-shell reveal" id="pdCourseShell" style="display:none; margin-top:12px;">
+        <div class="course-sidebar">
+          <div class="course-head">
+            <span class="course-eyebrow" id="pdCourseHeadStatus">&mdash;</span>
+            <h3 id="pdCourseHeadTitle">&mdash;</h3>
+            <div class="course-meta" id="pdCourseHeadMeta"></div>
+            <div class="course-progress"><span id="pdCourseProgressBar" style="width:0%;"></span></div>
+            <div class="course-progress-label" id="pdCourseProgressLabel">0%</div>
+          </div>
+          <div id="pdCourseDays"></div>
+        </div>
+
+        <div class="course-panel">
+          <span class="course-panel-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3" stroke-linecap="round"/></svg>
+            Struktur Kelas Saya
+          </span>
+          <div class="course-panel-frame" id="pdPanelFrame">
+            <div class="cp-inner" id="pdPanelBody">
+              <h4>Pilih salah satu langkah</h4>
+              <p>Klik salah satu langkah di sebelah kiri untuk membuka link Zoom, membaca detail tugas, mengumpulkan tugas via Drive, mengisi presensi, evaluasi, atau survey.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="pd-empty" id="pdEmptyNote" style="display:none;">Anda belum terdaftar di kelas manapun. Silakan hubungi admin BPSDMD Provinsi NTT.</p>
+    </div>
+  </section>
+</main>
+</div>
+
+<div class="spa-page" id="page-admin-login" hidden>
+<div class="admin-login-wrap">
+  <div class="admin-login-card">
+    <div class="admin-login-brand">
+      <svg width="36" height="36" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="64" height="64" rx="10" fill="#172746"/>
+        <path d="M13 41 L25 19 L32 32 L39 19 L51 41" stroke="#E3B75B" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13 41 H51" stroke="#A8462B" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <span>
+        <span class="name">SIPIJAR</span>
+        <span class="sub">Admin Panel · BPSDMD NTT</span>
+      </span>
+    </div>
+
+    <h1>Login Admin</h1>
+    <p class="lead-sm">Masuk untuk mengelola kelas, peserta, tugas, presensi, dan materi LMS.</p>
+
+    <div class="admin-error" id="adminLoginError">Nama pengguna atau kata sandi salah.</div>
+
+    <form id="loginForm">
+      <div class="admin-field">
+        <label for="adminUser">Nama Pengguna</label>
+        <input type="text" id="adminUser" autocomplete="username" required>
+      </div>
+      <div class="admin-field">
+        <label for="adminPass">Kata Sandi</label>
+        <input type="password" id="adminPass" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="admin-submit">Masuk ke Dashboard</button>
+    </form>
+
+    <p class="admin-hint">Demo — pengguna: <strong>admin</strong> &nbsp;·&nbsp; sandi: <strong>admin123</strong></p>
+    <div style="text-align:center;">
+      <a class="admin-back" href="index.html">&larr; Kembali ke situs SIPIJAR</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="spa-page" id="page-admin-dashboard" hidden>
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="brand">
+      <svg width="28" height="28" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="64" height="64" rx="10" fill="#172746"/>
+        <path d="M13 41 L25 19 L32 32 L39 19 L51 41" stroke="#E3B75B" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13 41 H51" stroke="#A8462B" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <span>
+        <span class="name">SIPIJAR</span>
+        <span class="sub">Admin Panel</span>
+      </span>
+    </div>
+
+    <ul class="admin-nav" id="adminNav">
+      <li><button type="button" data-panel="ringkasan" class="active">Ringkasan</button></li>
+      <li><button type="button" data-panel="kelas">Kelas</button></li>
+      <li><button type="button" data-panel="peserta">Peserta</button></li>
+      <li><button type="button" data-panel="tugas">Tugas</button></li>
+      <li><button type="button" data-panel="presensi">Presensi</button></li>
+      <li><button type="button" data-panel="materi">Langkah Kelas</button></li>
+      <li><button type="button" data-panel="evaluasi">Evaluasi</button></li>
+      <li><button type="button" data-panel="survey">Survey</button></li>
+    </ul>
+
+    <div class="admin-logout">
+      <button type="button" id="btnLogout">Keluar</button>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1 id="pageTitle">Ringkasan</h1>
+      <span class="who">Masuk sebagai <strong id="whoName">Administrator</strong> · <a href="index.html" style="color:var(--ink-mist);">Lihat situs &rarr;</a></span>
+    </div>
+
+    <!-- RINGKASAN -->
+    <section class="admin-panel active" id="panel-ringkasan">
+      <div class="admin-stats" id="statGrid"></div>
+      <div class="admin-table-wrap" style="padding:20px 22px;">
+        <p style="color:var(--ink-soft); font-size:14px; line-height:1.6;">
+          Selamat datang di panel admin SIPIJAR. Gunakan menu di samping untuk mengatur <strong>Kelas</strong>,
+          <strong>Peserta</strong>, <strong>Tugas</strong>, <strong>Presensi</strong>, dan <strong>Materi</strong> pelatihan.
+          Semua perubahan tersimpan otomatis di browser ini.
+        </p>
+      </div>
+    </section>
+
+    <!-- KELAS -->
+    <section class="admin-panel" id="panel-kelas">
+      <div class="admin-panel-head">
+        <div>
+          <h2>Kelas</h2>
+          <p>Kelola daftar kelas/angkatan pelatihan.</p>
+        </div>
+        <button class="admin-btn" data-add="kelas">+ Tambah Kelas</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Nama Kelas</th><th>Angkatan</th><th>Langkah</th><th>Mulai</th><th>Selesai</th><th>Status</th><th></th></tr></thead>
+          <tbody id="tbody-kelas"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PESERTA -->
+    <section class="admin-panel" id="panel-peserta">
+      <div class="admin-panel-head">
+        <div>
+          <h2>Peserta</h2>
+          <p>Kelola data peserta pelatihan per kelas.</p>
+        </div>
+        <button class="admin-btn" data-add="peserta">+ Tambah Peserta</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Nama</th><th>NIP</th><th>Kelas</th><th>Email</th><th>Status</th><th></th></tr></thead>
+          <tbody id="tbody-peserta"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TUGAS -->
+    <section class="admin-panel" id="panel-tugas">
+      <div class="admin-panel-head">
+        <div>
+          <h2>Tugas</h2>
+          <p>Kelola penugasan pada tiap kelas dan agenda.</p>
+        </div>
+        <button class="admin-btn" data-add="tugas">+ Tambah Tugas</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Judul Tugas</th><th>Kelas</th><th>Agenda</th><th>Tenggat</th><th>Status</th><th>Link Drive</th><th></th></tr></thead>
+          <tbody id="tbody-tugas"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PRESENSI -->
+    <section class="admin-panel" id="panel-presensi">
+      <div class="admin-panel-head">
+        <div>
+          <h2>Presensi</h2>
+          <p>Catat dan kelola kehadiran peserta per hari.</p>
+        </div>
+        <button class="admin-btn" data-add="presensi">+ Tambah Presensi</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Peserta</th><th>Kelas</th><th>Tanggal</th><th>Hari</th><th>Status</th><th></th></tr></thead>
+          <tbody id="tbody-presensi"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MATERI / LANGKAH KELAS -->
+    <section class="admin-panel" id="panel-materi">
+      <div class="admin-panel-head">
+        <div>
+          <h2>Langkah Kelas</h2>
+          <p>Kelola seluruh langkah kelas: sesi Synchronous (link Zoom), Asynchronous (detail tugas), Kumpul Tugas (link Drive), Presensi, Evaluasi Pengajar/Coach/Mentor/Penguji, dan Survey.</p>
+        </div>
+        <button class="admin-btn" data-add="materi">+ Tambah Langkah</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Judul</th><th>Kelas</th><th>Tipe</th><th>Grup/Hari</th><th>Deskripsi</th><th>Link</th><th></th></tr></thead>
+          <tbody id="tbody-materi"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- EVALUASI -->
+    <section class="admin-panel" id="panel-evaluasi">
+      <div class="admin-panel-head">
+        <div>
+          <h2>Rekap Evaluasi</h2>
+          <p>Hasil formulir Evaluasi Pengajar, Coach, Mentor, dan Penguji yang diisi peserta.</p>
+        </div>
+        <button class="admin-btn" data-add="evaluasi">+ Tambah Manual</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Peserta</th><th>Kelas</th><th>Tipe</th><th>Dinilai</th><th>Rata-rata</th><th>Saran</th><th></th></tr></thead>
+          <tbody id="tbody-evaluasi"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SURVEY -->
+    <section class="admin-panel" id="panel-survey">
+      <div class="admin-panel-head">
+        <div>
+          <h2>Rekap Survey Penggunaan LMS</h2>
+          <p>Hasil formulir survey penggunaan LMS SIPIJAR yang diisi peserta.</p>
+        </div>
+        <button class="admin-btn" data-add="survey">+ Tambah Manual</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Peserta</th><th>Kelas</th><th>Rata-rata</th><th>Saran</th><th></th></tr></thead>
+          <tbody id="tbody-survey"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- MODAL FORM (dipakai bergantian untuk semua entitas) -->
+<div class="admin-modal-overlay" id="modalOverlay">
+  <div class="admin-modal">
+    <h3 id="modalTitle">Tambah Data</h3>
+    <form id="modalForm"></form>
+  </div>
+</div>
+</div>
+
+<footer id="kontak-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">SIPIJAR</div>
+        <p>Sistem Pelatihan dan Pembelajaran Terintegrasi — Badan Pengembangan Sumber Daya Manusia Daerah Provinsi Nusa Tenggara Timur.</p>
+        <div class="social-row" style="margin-top:20px;">
+          <a href="https://www.tiktok.com/@bpsdmd.ntt.offici" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2h-3v13.7a3 3 0 1 1-2.2-2.9V9.6a6 6 0 1 0 5.2 5.9V8.9a6.8 6.8 0 0 0 4 1.3V7.2a4.3 4.3 0 0 1-4-5.2z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@bpsdmdnttofficial24" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.4-.4-5a2.8 2.8 0 0 0-2-2C17.9 4.6 12 4.6 12 4.6s-5.9 0-7.6.4a2.8 2.8 0 0 0-2 2C2 8.6 2 12 2 12s0 3.4.4 5a2.8 2.8 0 0 0 2 2c1.7.4 7.6.4 7.6.4s5.9 0 7.6-.4a2.8 2.8 0 0 0 2-2c.4-1.6.4-5 .4-5zM10 15.5v-7l6 3.5z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/bpsdmd_ntt/?hl=id" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="https://m.facebook.com/people/Bpsdmd-Ntt-Prima/100086756935228/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.2-1.5 1.6-1.5H17V3.6C16.7 3.5 15.7 3.4 14.5 3.4c-2.4 0-4 1.5-4 4.2v2.3H8v3.1h2.5V21z"/></svg>
+          </a>
+          <a href="https://twitter.com/bpsdmd_ntt" target="_blank" rel="noopener" aria-label="X">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4l7.3 9.4L4.4 20H7l5.2-5.3L16.4 20H20l-7.6-9.8L19 4h-2.6l-4.8 4.9L8 4z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Navigasi</h5>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="tentang.html">Tentang</a></li>
+          <li><a href="layanan.html">Layanan</a></li>
+          <li><a href="panduan.html">Panduan &amp; Survey</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Layanan</h5>
+        <ul>
+          <li><a href="kelas.html">Kelas Online</a></li>
+          <li><a href="kelas.html#pendukung">Evaluasi &amp; Sertifikat</a></li>
+          <li><a href="panduan.html">Panduan Akses</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Instansi</h5>
+        <ul>
+          <li><a href="https://bpsdmd.nttprov.go.id/" target="_blank" rel="noopener">BPSDMD Provinsi NTT</a></li>
+          <li><a href="https://www.sipijarbpsdmntt.com" target="_blank" rel="noopener">sipijarbpsdmntt.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2023 Badan Pengembangan Sumber Daya Manusia Daerah Provinsi NTT</span>
+      <span>Dirancang ulang sebagai portal SIPIJAR</span>
+      <a class="footer-admin-link" href="admin-login.html">&#128274; Login Admin</a>
+    </div>
+  </div>
+
+</footer>
+
+<!-- AUTH MODAL: DAFTAR / LOG IN -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-card">
+    <button class="auth-close" id="authClose" aria-label="Tutup">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+    </button>
+
+    <div class="auth-chevrons">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 16l6-9 6 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <span class="auth-brand">SIPIJAR BPSDMD NTT</span>
+
+    <!-- FORM DAFTAR / SIGN UP -->
+    <form class="auth-form is-active" id="authSignup">
+      <h3 class="auth-title">Daftar/Sign Up</h3>
+      <p class="auth-sub">sudah pernah mendaftar? <button type="button" data-auth-switch="login">Log In disini</button></p>
+
+      <div class="auth-fields">
+        <div class="auth-field"><select id="suKelas" required><option value="">Pilih Kelas...</option></select></div>
+        <div class="auth-field"><input type="text" id="suFirst" placeholder="Nama Depan" required></div>
+        <div class="auth-field"><input type="text" id="suLast" placeholder="Nama Belakang" required></div>
+        <div class="auth-field"><input type="text" id="suNip" placeholder="Nomor Induk Pegawai" required></div>
+        <div class="auth-field accent"><input type="email" id="suEmail" placeholder="Email" required></div>
+        <div class="auth-field accent"><input type="password" id="suPassword" placeholder="Password" required></div>
+      </div>
+
+      <p class="auth-error" id="signupError">NIP atau email ini sudah terdaftar.</p>
+      <button type="submit" class="auth-submit">Daftar</button>
+      <p class="auth-note">Dengan mendaftar, Anda menyetujui ketentuan penggunaan SIPIJAR BPSDMD Provinsi NTT.</p>
+    </form>
+
+    <!-- FORM LOG IN -->
+    <form class="auth-form" id="authLogin">
+      <h3 class="auth-title">Masuk/Log In</h3>
+      <p class="auth-sub">belum punya akun? <button type="button" data-auth-switch="signup">Daftar disini</button></p>
+
+      <div class="auth-fields">
+        <div class="auth-field"><input type="text" id="liIdentifier" placeholder="Email atau Nomor Induk Pegawai" required></div>
+        <div class="auth-field accent"><input type="password" id="liPassword" placeholder="Password" required></div>
+      </div>
+
+      <p class="auth-error" id="loginError">Email/NIP atau password salah.</p>
+      <button type="submit" class="auth-submit">Masuk</button>
+      <p class="auth-note">Lupa password? Hubungi admin BPSDMD Provinsi NTT.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+/* ===== admin.js ===== */
+
+/* =========================================================
+   SIPIJAR — Admin Panel
+   Catatan: ini demo front-end. Autentikasi & data disimpan
+   di browser (sessionStorage/localStorage), belum terhubung
+   ke server/database sungguhan.
+   ========================================================= */
+
+const LS_KEY = 'sipijar_admin_data_v1';
+
+function uid(prefix){
+  return prefix + '_' + Math.random().toString(36).slice(2, 9);
+}
+
+function seedData(){
+  return {
+    kelas: [
+      { id: uid('kls'), nama: 'E-Learning Latsar CPNS III Angkatan 301 FASILITASI', angkatan: '301', jumlahLangkah: 76, mulai: '2025-01-06', selesai: '2025-02-05', status: 'Berjalan' },
+      { id: uid('kls'), nama: 'E-Learning Latsar CPNS III Angkatan 302 FASILITASI', angkatan: '302', jumlahLangkah: 76, mulai: '2025-02-10', selesai: '2025-03-12', status: 'Belum Dimulai' }
+    ],
+    peserta: [],
+    tugas: [],
+    presensi: [],
+    materi: [],
+    evaluasi: [],
+    survey: []
+  };
+}
+
+function loadData(){
+  let raw = localStorage.getItem(LS_KEY);
+  if (!raw) {
+    const seeded = seedData();
+    // isi peserta/materi contoh terkait kelas pertama, meniru struktur 76 langkah LMS resmi
+    const k1 = seeded.kelas[0].id;
+    seeded.peserta = [
+      { id: uid('psr'), nama: 'Maria Y. Bria', nip: '199001012020122001', kelasId: k1, email: 'maria.bria@ntt.go.id', password: 'latsar123', status: 'Aktif' },
+      { id: uid('psr'), nama: 'Yohanes Riwu Kaho', nip: '199203152020121002', kelasId: k1, email: 'yohanes.riwu@ntt.go.id', password: 'latsar123', status: 'Aktif' },
+      { id: uid('psr'), nama: 'Angelina Bete Seran', nip: '199508202020122003', kelasId: k1, email: 'angelina.seran@ntt.go.id', password: 'latsar123', status: 'Aktif' }
+    ];
+    seeded.tugas = [];
+    seeded.presensi = [];
+    seeded.evaluasi = [];
+    seeded.survey = [];
+    seeded.materi = [
+      { id: uid('mtr'), kelasId: k1, urutan: 1, hari: 'Administrasi dan Kebijakan Pelatihan', tipe: 'KumpulTugas', judul: 'Kumpul Lembar Komitmen Pelatihan', tenggat: '2025-01-06' },
+      { id: uid('mtr'), kelasId: k1, urutan: 2, hari: 'Administrasi dan Kebijakan Pelatihan', tipe: 'Dokumen', judul: 'Kebijakan dan Overview Penyelenggaraan LATSAR CPNS', deskripsi: 'Overview kebijakan penyelenggaraan pelatihan.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 3, hari: 'Administrasi dan Kebijakan Pelatihan', tipe: 'KumpulTugas', judul: 'Kumpul Surat Tugas', tenggat: '2025-01-06' },
+      { id: uid('mtr'), kelasId: k1, urutan: 4, hari: 'Hari ke 1 - Agenda I', tipe: 'Synchronous', judul: 'SYNCHRONOUS 1 MATERI AGENDA 1', link: 'https://zoom.us/j/contohlinkzoom1', waktu: '08.00 - 12.00 WITA', deskripsi: 'Sesi tatap maya bersama pengajar Agenda I.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 5, hari: 'Hari ke 1 - Agenda I', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 1 AGENDA I', deskripsi: 'Baca modul Agenda I lalu kerjakan refleksi singkat sebelum sesi synchronous berikutnya.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 6, hari: 'Hari ke 1 - Agenda I', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 1 AGENDA 1', tenggat: '2025-01-07' },
+      { id: uid('mtr'), kelasId: k1, urutan: 7, hari: 'Hari ke 1 - Agenda I', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 1' },
+      { id: uid('mtr'), kelasId: k1, urutan: 8, hari: 'Hari ke 2 - Agenda I', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 2 AGENDA I', deskripsi: 'Kerjakan tugas mandiri Agenda I bagian kedua sesuai instruksi pengajar.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 9, hari: 'Hari ke 2 - Agenda I', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 2 AGENDA 1', tenggat: '2025-01-08' },
+      { id: uid('mtr'), kelasId: k1, urutan: 10, hari: 'Hari ke 2 - Agenda I', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 2' },
+      { id: uid('mtr'), kelasId: k1, urutan: 11, hari: 'Hari ke 3 - Agenda I', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 3 AGENDA I', deskripsi: 'Rangkum poin penting Agenda I sebagai bahan diskusi synchronous kedua.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 12, hari: 'Hari ke 3 - Agenda I', tipe: 'Synchronous', judul: 'SYNCHRONOUS 2 MATERI AGENDA 1', link: 'https://zoom.us/j/contohlinkzoom2', waktu: '08.00 - 12.00 WITA', deskripsi: 'Pendalaman materi Agenda I bersama pengajar.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 13, hari: 'Hari ke 3 - Agenda I', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 3 AGENDA 1', tenggat: '2025-01-09' },
+      { id: uid('mtr'), kelasId: k1, urutan: 14, hari: 'Hari ke 3 - Agenda I', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 3' },
+      { id: uid('mtr'), kelasId: k1, urutan: 15, hari: 'Hari ke 3 - Agenda I', tipe: 'EvaluasiPengajar', judul: 'EVALUASI PENGAJAR', namaPenilai: 'Pengajar Agenda I' },
+      { id: uid('mtr'), kelasId: k1, urutan: 16, hari: 'Hari ke 4 - Agenda II', tipe: 'Synchronous', judul: 'SYNCHRONOUS 1 MATERI AGENDA II', link: 'https://zoom.us/j/contohlinkzoom3', waktu: '08.00 - 12.00 WITA', deskripsi: 'Sesi tatap maya bersama pengajar Agenda II.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 17, hari: 'Hari ke 4 - Agenda II', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 1 AGENDA II', deskripsi: 'Pelajari modul Agenda II lalu kerjakan latihan mandiri.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 18, hari: 'Hari ke 4 - Agenda II', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 1 AGENDA II', tenggat: '2025-01-10' },
+      { id: uid('mtr'), kelasId: k1, urutan: 19, hari: 'Hari ke 4 - Agenda II', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 4' },
+      { id: uid('mtr'), kelasId: k1, urutan: 20, hari: 'Hari ke 5 - Agenda II', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 2 AGENDA II', deskripsi: 'Kerjakan tugas mandiri Agenda II bagian kedua.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 21, hari: 'Hari ke 5 - Agenda II', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 2 AGENDA II', tenggat: '2025-01-11' },
+      { id: uid('mtr'), kelasId: k1, urutan: 22, hari: 'Hari ke 5 - Agenda II', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 5' },
+      { id: uid('mtr'), kelasId: k1, urutan: 23, hari: 'Hari ke 6 - Agenda II', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 3 AGENDA II', deskripsi: 'Kerjakan tugas mandiri Agenda II bagian ketiga.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 24, hari: 'Hari ke 6 - Agenda II', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 3 AGENDA II', tenggat: '2025-01-12' },
+      { id: uid('mtr'), kelasId: k1, urutan: 25, hari: 'Hari ke 6 - Agenda II', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 6' },
+      { id: uid('mtr'), kelasId: k1, urutan: 26, hari: 'Hari ke 7 - Agenda II', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 4 AGENDA II', deskripsi: 'Rangkum poin penting Agenda II sebagai bahan diskusi synchronous kedua.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 27, hari: 'Hari ke 7 - Agenda II', tipe: 'Synchronous', judul: 'SYNCHRONOUS 2 MATERI AGENDA II', link: 'https://zoom.us/j/contohlinkzoom4', waktu: '08.00 - 12.00 WITA', deskripsi: 'Pendalaman materi Agenda II bersama pengajar.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 28, hari: 'Hari ke 7 - Agenda II', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 4 AGENDA II', tenggat: '2025-01-13' },
+      { id: uid('mtr'), kelasId: k1, urutan: 29, hari: 'Hari ke 7 - Agenda II', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 7' },
+      { id: uid('mtr'), kelasId: k1, urutan: 30, hari: 'Hari ke 7 - Agenda II', tipe: 'EvaluasiPengajar', judul: 'EVALUASI PENGAJAR', namaPenilai: 'Pengajar Agenda II' },
+      { id: uid('mtr'), kelasId: k1, urutan: 31, hari: 'Hari ke 8 - Agenda III', tipe: 'Synchronous', judul: 'SYNCHRONOUS 1 MATERI AGENDA III', link: 'https://zoom.us/j/contohlinkzoom5', waktu: '08.00 - 12.00 WITA', deskripsi: 'Sesi tatap maya bersama pengajar Agenda III.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 32, hari: 'Hari ke 8 - Agenda III', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 1 AGENDA III', deskripsi: 'Pelajari modul Agenda III lalu kerjakan latihan mandiri.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 33, hari: 'Hari ke 8 - Agenda III', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 1 AGENDA III', tenggat: '2025-01-14' },
+      { id: uid('mtr'), kelasId: k1, urutan: 34, hari: 'Hari ke 8 - Agenda III', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 8' },
+      { id: uid('mtr'), kelasId: k1, urutan: 35, hari: 'Hari ke 9 - Agenda III', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 2 AGENDA III', deskripsi: 'Kerjakan tugas mandiri Agenda III bagian kedua.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 36, hari: 'Hari ke 9 - Agenda III', tipe: 'Synchronous', judul: 'SYNCHRONOUS MATERI 2 AGENDA III dan COACHING AGENDA 1,2,3', link: 'https://zoom.us/j/contohlinkzoom6', waktu: '08.00 - 12.00 WITA', deskripsi: 'Pendalaman materi Agenda III sekaligus coaching Agenda I, II, III.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 37, hari: 'Hari ke 9 - Agenda III', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 2 AGENDA III', tenggat: '2025-01-15' },
+      { id: uid('mtr'), kelasId: k1, urutan: 38, hari: 'Hari ke 9 - Agenda III', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 9' },
+      { id: uid('mtr'), kelasId: k1, urutan: 39, hari: 'Hari ke 9 - Agenda III', tipe: 'EvaluasiPengajar', judul: 'EVALUASI PENGAJAR', namaPenilai: 'Pengajar Agenda III' },
+      { id: uid('mtr'), kelasId: k1, urutan: 40, hari: 'Hari ke 9 - Agenda III', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 3 AGENDA III', deskripsi: 'Kerjakan tugas mandiri Agenda III bagian ketiga.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 41, hari: 'Hari ke 9 - Agenda III', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 3 AGENDA III', tenggat: '2025-01-15' },
+      { id: uid('mtr'), kelasId: k1, urutan: 42, hari: 'Hari ke 10 - Agenda IV (Coaching)', tipe: 'Synchronous', judul: 'SYNCHRONOUS PEMBIMBINGAN', link: 'https://zoom.us/j/contohlinkzoom7', waktu: '08.00 - 12.00 WITA', deskripsi: 'Sesi pembimbingan awal Agenda IV bersama coach.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 43, hari: 'Hari ke 10 - Agenda IV (Coaching)', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 1 AGENDA IV', deskripsi: 'Susun kerangka awal Rancangan Aktualisasi.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 44, hari: 'Hari ke 10 - Agenda IV (Coaching)', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 1 AGENDA IV (Rancangan Aktualisasi)', tenggat: '2025-01-16' },
+      { id: uid('mtr'), kelasId: k1, urutan: 45, hari: 'Hari ke 10 - Agenda IV (Coaching)', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 10' },
+      { id: uid('mtr'), kelasId: k1, urutan: 46, hari: 'Hari ke 11 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 2 AGENDA IV', deskripsi: 'Lanjutkan penyusunan Rancangan Aktualisasi bagian identifikasi isu.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 47, hari: 'Hari ke 11 - Agenda IV (Rancangan Aktualisasi)', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 2 AGENDA IV (Rancangan Aktualisasi)', tenggat: '2025-01-17' },
+      { id: uid('mtr'), kelasId: k1, urutan: 48, hari: 'Hari ke 11 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 11' },
+      { id: uid('mtr'), kelasId: k1, urutan: 49, hari: 'Hari ke 12 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 3 AGENDA IV', deskripsi: 'Susun gagasan pemecahan isu pada Rancangan Aktualisasi.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 50, hari: 'Hari ke 12 - Agenda IV (Rancangan Aktualisasi)', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 3 AGENDA IV (Rancangan Aktualisasi)', tenggat: '2025-01-18' },
+      { id: uid('mtr'), kelasId: k1, urutan: 51, hari: 'Hari ke 12 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 12' },
+      { id: uid('mtr'), kelasId: k1, urutan: 52, hari: 'Hari ke 13 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 4 AGENDA IV', deskripsi: 'Susun rencana kegiatan aktualisasi beserta tahapannya.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 53, hari: 'Hari ke 13 - Agenda IV (Rancangan Aktualisasi)', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 4 AGENDA IV (Rancangan Aktualisasi)', tenggat: '2025-01-19' },
+      { id: uid('mtr'), kelasId: k1, urutan: 54, hari: 'Hari ke 13 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 13' },
+      { id: uid('mtr'), kelasId: k1, urutan: 55, hari: 'Hari ke 13 - Agenda IV (Rancangan Aktualisasi)', tipe: 'EvaluasiCoach', judul: 'EVALUASI COACH', namaPenilai: 'Coach Rancangan Aktualisasi' },
+      { id: uid('mtr'), kelasId: k1, urutan: 56, hari: 'Hari ke 14 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Synchronous', judul: 'SYNCHRONOUS EVALUASI AKADEMIK', link: 'https://zoom.us/j/contohlinkzoom8', waktu: '08.00 - 12.00 WITA', deskripsi: 'Sesi evaluasi akademik seluruh Agenda I-III.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 57, hari: 'Hari ke 14 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS TUGAS 5 AGENDA IV', deskripsi: 'Perbaiki Rancangan Aktualisasi berdasarkan masukan coach.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 58, hari: 'Hari ke 14 - Agenda IV (Rancangan Aktualisasi)', tipe: 'KumpulTugas', judul: 'KUMPUL TUGAS 5 AGENDA IV (Rancangan Aktualisasi)', tenggat: '2025-01-20' },
+      { id: uid('mtr'), kelasId: k1, urutan: 59, hari: 'Hari ke 14 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 14' },
+      { id: uid('mtr'), kelasId: k1, urutan: 60, hari: 'Hari ke 15 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Synchronous', judul: 'SYNCHRONOUS Coaching Rancangan Aktualisasi', link: 'https://zoom.us/j/contohlinkzoom9', waktu: '08.00 - 12.00 WITA', deskripsi: 'Coaching lanjutan penyempurnaan Rancangan Aktualisasi.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 61, hari: 'Hari ke 15 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS 6 AGENDA IV', deskripsi: 'Perbaiki bagian metode pelaksanaan aktualisasi.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 62, hari: 'Hari ke 15 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 15' },
+      { id: uid('mtr'), kelasId: k1, urutan: 63, hari: 'Hari ke 16 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS 7 AGENDA IV', deskripsi: 'Susun indikator keberhasilan aktualisasi.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 64, hari: 'Hari ke 16 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 16' },
+      { id: uid('mtr'), kelasId: k1, urutan: 65, hari: 'Hari ke 17 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS 8 AGENDA IV', deskripsi: 'Finalisasi draf Rancangan Aktualisasi sebelum seminar.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 66, hari: 'Hari ke 17 - Agenda IV (Rancangan Aktualisasi)', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 17' },
+      { id: uid('mtr'), kelasId: k1, urutan: 67, hari: 'Hari ke 17 - Agenda IV (Rancangan Aktualisasi)', tipe: 'EvaluasiCoach', judul: 'EVALUASI COACH', namaPenilai: 'Coach Rancangan Aktualisasi' },
+      { id: uid('mtr'), kelasId: k1, urutan: 68, hari: 'Hari ke 18 - Agenda IV Coaching Rancangan Aktualisasi', tipe: 'Synchronous', judul: 'SYNCHRONOUS Coaching Rancangan Aktualisasi', link: 'https://zoom.us/j/contohlinkzoom10', waktu: '08.00 - 12.00 WITA', deskripsi: 'Coaching akhir sebelum seminar Rancangan Aktualisasi.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 69, hari: 'Hari ke 18 - Agenda IV Coaching Rancangan Aktualisasi', tipe: 'Asynchronous', judul: 'ASYNCHRONOUS 9 AGENDA IV', deskripsi: 'Siapkan bahan tayang untuk seminar Rancangan Aktualisasi.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 70, hari: 'Hari ke 18 - Agenda IV Coaching Rancangan Aktualisasi', tipe: 'KumpulTugas', judul: 'Kumpul Rancangan Aktualisasi', tenggat: '2025-01-22' },
+      { id: uid('mtr'), kelasId: k1, urutan: 71, hari: 'Hari ke 18 - Agenda IV Coaching Rancangan Aktualisasi', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 18' },
+      { id: uid('mtr'), kelasId: k1, urutan: 72, hari: 'Hari ke 19 - Seminar Rancangan Aktualisasi', tipe: 'Synchronous', judul: 'SYNCHRONOUS Seminar Rancangan Aktualisasi', link: 'https://zoom.us/j/contohlinkzoom11', waktu: '08.00 - 16.00 WITA', deskripsi: 'Seminar Rancangan Aktualisasi di hadapan penguji dan mentor.' },
+      { id: uid('mtr'), kelasId: k1, urutan: 73, hari: 'Hari ke 19 - Seminar Rancangan Aktualisasi', tipe: 'Presensi', judul: 'DAFTAR HADIR HARI KE- 19' },
+      { id: uid('mtr'), kelasId: k1, urutan: 74, hari: 'Hari ke 19 - Seminar Rancangan Aktualisasi', tipe: 'EvaluasiMentor', judul: 'EVALUASI MENTOR', namaPenilai: 'Mentor Instansi' },
+      { id: uid('mtr'), kelasId: k1, urutan: 75, hari: 'Hari ke 19 - Seminar Rancangan Aktualisasi', tipe: 'EvaluasiPenguji', judul: 'EVALUASI PENGUJI', namaPenilai: 'Tim Penguji' },
+      { id: uid('mtr'), kelasId: k1, urutan: 76, hari: 'Survey Penggunaan LMS', tipe: 'Survey', judul: 'SURVEY PENGGUNAAN LMS SIPIJAR', deskripsi: 'Berikan penilaian Anda terhadap kemudahan penggunaan LMS SIPIJAR.' }
+    ];
+    localStorage.setItem(LS_KEY, JSON.stringify(seeded));
+    return seeded;
+  }
+  try {
+    const parsed = JSON.parse(raw);
+    if (!parsed.evaluasi) parsed.evaluasi = [];
+    if (!parsed.survey) parsed.survey = [];
+    return parsed;
+  } catch(e){ const s = seedData(); localStorage.setItem(LS_KEY, JSON.stringify(s)); return s; }
+}
+
+function saveData(data){
+  localStorage.setItem(LS_KEY, JSON.stringify(data));
+}
+
+function requireAdminAuth(){
+  if (sessionStorage.getItem('sipijar_admin_auth') !== '1') {
+    spaGoto('admin-login');
+  }
+}
+
+function adminLogout(){
+  sessionStorage.removeItem('sipijar_admin_auth');
+  sessionStorage.removeItem('sipijar_admin_name');
+  spaGoto('admin-login');
+}
+
+function showToast(msg){
+  let t = document.getElementById('toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'toast';
+    t.className = 'toast';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+function escapeHtml(str){
+  return String(str ?? '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+}
+
+/* ---------------------------------------------------------
+   Kelas Online (halaman publik) & autentikasi peserta
+   Catatan: sama seperti admin, ini masih demo front-end —
+   akun & pendaftaran peserta disimpan di localStorage browser.
+--------------------------------------------------------- */
+function kelasPesertaCount(kelasId, data){
+  data = data || loadData();
+  return data.peserta.filter(p => p.kelasId === kelasId).length;
+}
+
+function findKelas(id, data){
+  data = data || loadData();
+  return data.kelas.find(k => k.id === id) || null;
+}
+
+function pesertaSessionId(){
+  return sessionStorage.getItem('sipijar_peserta_id');
+}
+
+function pesertaSetSession(id){
+  sessionStorage.setItem('sipijar_peserta_id', id);
+}
+
+function pesertaLogout(){
+  sessionStorage.removeItem('sipijar_peserta_id');
+  spaGoto('index');
+}
+
+function requirePesertaAuth(){
+  if (!pesertaSessionId()) {
+    spaGoto('kelas');
+  }
+}
+
+function currentPeserta(data){
+  data = data || loadData();
+  const id = pesertaSessionId();
+  return id ? (data.peserta.find(p => p.id === id) || null) : null;
+}
+
+function registerPeserta(input, data){
+  data = data || loadData();
+  const email = (input.email || '').trim();
+  const nip = (input.nip || '').trim();
+  const exists = data.peserta.find(p =>
+    (email && p.email && p.email.toLowerCase() === email.toLowerCase()) ||
+    (nip && p.nip && p.nip === nip)
+  );
+  if (exists) return { ok:false, reason:'exists' };
+  if (!input.kelasId || !findKelas(input.kelasId, data)) return { ok:false, reason:'kelas' };
+
+  const obj = {
+    id: uid('psr'),
+    nama: (input.nama || '').trim(),
+    nip: nip,
+    kelasId: input.kelasId,
+    email: email,
+    password: input.password || '',
+    status: 'Aktif'
+  };
+  data.peserta.push(obj);
+  saveData(data);
+  return { ok:true, peserta: obj };
+}
+
+function loginPeserta(identifier, password, data){
+  data = data || loadData();
+  const idf = (identifier || '').trim().toLowerCase();
+  if (!idf) return null;
+  return data.peserta.find(p =>
+    ((p.email && p.email.toLowerCase() === idf) || (p.nip && p.nip.toLowerCase() === idf)) &&
+    p.password === password
+  ) || null;
+}
+
+/* ===== steps.js (shared) ===== */
+
+/* =========================================================
+   SIPIJAR — Helper bersama untuk struktur langkah kelas.
+   Dipakai oleh halaman publik "Kelas Online" (pratinjau, tanpa
+   formulir) maupun "Beranda Peserta" (interaktif, dengan
+   formulir presensi/evaluasi/survey yang tersimpan).
+   ========================================================= */
+
+const STEP_TIPE_LABEL = {
+  Synchronous:'Synchronous', Asynchronous:'Asynchronous', KumpulTugas:'Kumpul Tugas',
+  Presensi:'Presensi', EvaluasiPengajar:'Evaluasi Pengajar', EvaluasiCoach:'Evaluasi Coach',
+  EvaluasiMentor:'Evaluasi Mentor', EvaluasiPenguji:'Evaluasi Penguji', Survey:'Survey',
+  Dokumen:'Dokumen', Video:'Video'
+};
+function stepBadgeLabel(tipe){ return STEP_TIPE_LABEL[tipe] || tipe; }
+
+const EVAL_TITLE = {
+  EvaluasiPengajar:'Evaluasi Pengajar', EvaluasiCoach:'Evaluasi Coach',
+  EvaluasiMentor:'Evaluasi Mentor', EvaluasiPenguji:'Evaluasi Penguji'
+};
+const EVAL_ASPECTS = {
+  EvaluasiPengajar: ['Penguasaan Materi','Kejelasan Penyampaian','Interaksi dengan Peserta','Ketepatan Waktu Mengajar','Manfaat Materi bagi Tugas'],
+  EvaluasiCoach: ['Kualitas Bimbingan','Ketersediaan Waktu Coaching','Kejelasan Arahan','Motivasi kepada Peserta','Manfaat Coaching bagi Rancangan Aktualisasi'],
+  EvaluasiMentor: ['Kualitas Bimbingan di Instansi','Ketersediaan Mentor','Dukungan terhadap Pelaksanaan Aktualisasi','Komunikasi dengan Peserta','Manfaat Mentoring'],
+  EvaluasiPenguji: ['Objektivitas Penilaian','Kejelasan Pertanyaan','Kualitas Masukan/Saran','Sikap dan Etika Penguji','Kebermanfaatan Masukan bagi Peserta']
+};
+const SURVEY_ASPECTS = ['Kemudahan Mengakses LMS SIPIJAR','Kestabilan/Kelancaran Sistem','Kelengkapan Fitur yang Tersedia','Kejelasan Instruksi Penggunaan','Kepuasan Keseluruhan Terhadap LMS'];
+
+/* Kelompokkan materi per grup "hari" sesuai urutan tampil, menjaga
+   urutan kemunculan grup pertama kali di data (bukan alfabetis). */
+function groupMateriByHari(materi){
+  const sorted = materi.slice().sort((a, b) => (Number(a.urutan) || 0) - (Number(b.urutan) || 0));
+  const map = new Map();
+  sorted.forEach(m => {
+    const label = m.hari || 'Langkah Lain';
+    if (!map.has(label)) map.set(label, []);
+    map.get(label).push(m);
+  });
+  return Array.from(map.entries()).map(([label, items]) => ({ label, items }));
+}
+
+/* Cari sesi Synchronous dalam grup yang sama, dipakai untuk
+   auto-isi kolom "Materi" pada formulir presensi. */
+function findSyncLabelForGroup(materiKelas, hariLabel){
+  const sync = materiKelas.find(x => x.hari === hariLabel && x.tipe === 'Synchronous');
+  return sync ? sync.judul : hariLabel;
+}
+
+function isStepDone(m, peserta, data){
+  if (!peserta) return false;
+  if (m.tipe === 'Presensi') return data.presensi.some(p => p.materiId === m.id && p.pesertaId === peserta.id);
+  if (m.tipe === 'Survey') return data.survey.some(s => s.materiId === m.id && s.pesertaId === peserta.id);
+  if (m.tipe && m.tipe.indexOf('Evaluasi') === 0) return data.evaluasi.some(e => e.materiId === m.id && e.pesertaId === peserta.id);
+  return false;
+}
+
+function ratingSelectHtml(name){
+  return `<select name="${name}" required>
+    <option value="">Pilih&hellip;</option>
+    <option value="5">5 &ndash; Sangat Baik</option>
+    <option value="4">4 &ndash; Baik</option>
+    <option value="3">3 &ndash; Cukup</option>
+    <option value="2">2 &ndash; Kurang</option>
+    <option value="1">1 &ndash; Sangat Kurang</option>
+  </select>`;
+}
+
+function renderPresensiBlock(m, ctx){
+  const data = ctx.data;
+  const materiKelas = data.materi.filter(x => x.kelasId === m.kelasId);
+  const autoMateri = findSyncLabelForGroup(materiKelas, m.hari);
+
+  if (!ctx.interactive) {
+    return `<p class="pform-hint" style="margin-top:14px;">Formulir presensi akan otomatis terisi hari, tanggal, waktu, materi, nama angkatan, dan nama peserta setelah Anda masuk sebagai peserta.</p>`;
+  }
+  const peserta = ctx.peserta, kelas = ctx.kelas;
+  const existing = data.presensi.find(p => p.materiId === m.id && p.pesertaId === peserta.id);
+  if (existing) {
+    return `<div class="pform-done">
+      <span class="ok-flag">&#10003; Presensi tersimpan</span>
+      <h5>${escapeHtml(existing.hari)} &middot; ${escapeHtml(existing.tanggal)} &middot; ${escapeHtml(existing.waktu || '-')}</h5>
+      <p>Materi: ${escapeHtml(existing.materi || '-')}</p>
+      <p>Status kehadiran: ${escapeHtml(existing.status)}</p>
+    </div>`;
+  }
+  const now = new Date();
+  const todayStr = now.toISOString().slice(0, 10);
+  const nowStr = now.toTimeString().slice(0, 5);
+  return `
+    <form class="pform" data-role="presensi-form" data-materi-id="${m.id}" style="margin-top:16px;">
+      <div class="pform-field"><label>Hari</label><input type="text" name="hari" value="${escapeHtml(m.hari)}" readonly></div>
+      <div class="pform-field"><label>Tanggal</label><input type="date" name="tanggal" value="${todayStr}" required></div>
+      <div class="pform-field"><label>Waktu</label><input type="time" name="waktu" value="${nowStr}" required></div>
+      <div class="pform-field"><label>Materi</label><input type="text" name="materi" value="${escapeHtml(autoMateri)}" required></div>
+      <div class="pform-field"><label>Nama Angkatan</label><input type="text" value="${escapeHtml(kelas ? kelas.nama : '-')}" readonly></div>
+      <div class="pform-field"><label>Nama Peserta</label><input type="text" value="${escapeHtml(peserta.nama)}" readonly></div>
+      <div class="pform-field"><label>Status Kehadiran</label>
+        <select name="status">
+          <option value="Hadir" selected>Hadir</option>
+          <option value="Izin">Izin</option>
+          <option value="Sakit">Sakit</option>
+        </select>
+      </div>
+      <button type="submit" class="klink-btn pform-submit">Kirim Presensi</button>
+    </form>`;
+}
+
+function renderEvaluasiBlock(m, ctx){
+  const tipe = m.tipe;
+  const aspects = EVAL_ASPECTS[tipe] || [];
+  if (!ctx.interactive) {
+    return `<p class="pform-hint" style="margin-top:14px;">Masuk sebagai peserta untuk mengisi formulir ${escapeHtml(stepBadgeLabel(tipe).toLowerCase())} secara lengkap.</p>`;
+  }
+  const data = ctx.data, peserta = ctx.peserta;
+  const existing = data.evaluasi.find(e => e.materiId === m.id && e.pesertaId === peserta.id);
+  if (existing) {
+    return `<div class="pform-done">
+      <span class="ok-flag">&#10003; ${escapeHtml(EVAL_TITLE[tipe] || tipe)} tersimpan</span>
+      <h5>${escapeHtml(existing.namaDinilai || '-')}</h5>
+      <p>Rata-rata skor: ${existing.rataRata}/5</p>
+      ${existing.saran ? `<p>Saran: ${escapeHtml(existing.saran)}</p>` : ''}
+    </div>`;
+  }
+  const aspectRows = aspects.map((label, i) => `
+    <div class="pform-aspect-row">
+      <span>${escapeHtml(label)}</span>
+      ${ratingSelectHtml('aspek_' + i)}
+    </div>`).join('');
+  return `
+    <form class="pform" data-role="evaluasi-form" data-materi-id="${m.id}" style="margin-top:16px;">
+      <div class="pform-field"><label>Nama yang Dinilai</label><input type="text" name="namaDinilai" value="${escapeHtml(m.namaPenilai || '')}" required></div>
+      <div class="pform-aspects">${aspectRows}</div>
+      <div class="pform-field"><label>Saran / Masukan</label><textarea name="saran" placeholder="Tuliskan saran atau masukan Anda (opsional)"></textarea></div>
+      <button type="submit" class="klink-btn pform-submit">Kirim ${escapeHtml(EVAL_TITLE[tipe] || 'Evaluasi')}</button>
+    </form>`;
+}
+
+function renderSurveyBlock(m, ctx){
+  if (!ctx.interactive) {
+    return `<p class="pform-hint" style="margin-top:14px;">Masuk sebagai peserta untuk mengisi survey penggunaan LMS.</p>`;
+  }
+  const data = ctx.data, peserta = ctx.peserta;
+  const existing = data.survey.find(s => s.materiId === m.id && s.pesertaId === peserta.id);
+  if (existing) {
+    return `<div class="pform-done">
+      <span class="ok-flag">&#10003; Survey tersimpan</span>
+      <p>Rata-rata skor: ${existing.rataRata}/5</p>
+      ${existing.saran ? `<p>Saran: ${escapeHtml(existing.saran)}</p>` : ''}
+    </div>`;
+  }
+  const rows = SURVEY_ASPECTS.map((label, i) => `
+    <div class="pform-aspect-row">
+      <span>${escapeHtml(label)}</span>
+      ${ratingSelectHtml('aspek_' + i)}
+    </div>`).join('');
+  return `
+    <form class="pform" data-role="survey-form" data-materi-id="${m.id}" style="margin-top:16px;">
+      <div class="pform-aspects">${rows}</div>
+      <div class="pform-field"><label>Saran / Masukan</label><textarea name="saran" placeholder="Tuliskan saran Anda untuk pengembangan LMS (opsional)"></textarea></div>
+      <button type="submit" class="klink-btn pform-submit">Kirim Survey</button>
+    </form>`;
+}
+
+/* Merender isi panel detail sebuah langkah. opts: { interactive, peserta, kelas, data } */
+function renderStepPanel(m, opts){
+  opts = opts || {};
+  const interactive = !!opts.interactive;
+  const data = opts.data || loadData();
+  let body = '';
+
+  if (m.tipe === 'Synchronous') {
+    body = `
+      ${m.waktu ? `<p class="kt-sub" style="margin-top:6px;">Jadwal: ${escapeHtml(m.waktu)}</p>` : ''}
+      ${m.deskripsi ? `<p style="margin-top:14px;">${escapeHtml(m.deskripsi)}</p>` : ''}
+      <div style="margin-top:18px;">
+        ${m.link ? `<a href="${escapeHtml(m.link)}" target="_blank" rel="noopener" class="klink-btn">Buka Link Zoom &#8599;</a>` : `<p class="kt-note">Admin belum menyematkan link Zoom untuk sesi ini.</p>`}
+      </div>`;
+  } else if (m.tipe === 'Asynchronous') {
+    body = `<div class="kt-detail-box"><span class="kt-detail-label">Detail Tugas</span><p>${escapeHtml(m.deskripsi || 'Belum ada detail tugas.')}</p></div>
+      ${m.tenggat ? `<p class="kt-sub" style="margin-top:10px;">Tenggat: ${escapeHtml(m.tenggat)}</p>` : ''}`;
+  } else if (m.tipe === 'KumpulTugas') {
+    body = `
+      ${m.deskripsi ? `<p style="margin-top:6px;">${escapeHtml(m.deskripsi)}</p>` : ''}
+      ${m.tenggat ? `<p class="kt-sub" style="margin-top:10px;">Tenggat pengumpulan: ${escapeHtml(m.tenggat)}</p>` : ''}
+      <div style="margin-top:18px;">
+        ${m.link ? `<a href="${escapeHtml(m.link)}" target="_blank" rel="noopener" class="klink-btn">Kumpul Tugas via Drive &#8599;</a>` : `<p class="kt-note">Admin belum menyematkan link Drive untuk pengumpulan tugas ini.</p>`}
+      </div>`;
+  } else if (m.tipe === 'Presensi') {
+    body = renderPresensiBlock(m, { interactive, peserta: opts.peserta, kelas: opts.kelas, data });
+  } else if (m.tipe && m.tipe.indexOf('Evaluasi') === 0) {
+    body = renderEvaluasiBlock(m, { interactive, peserta: opts.peserta, data });
+  } else if (m.tipe === 'Survey') {
+    body = renderSurveyBlock(m, { interactive, peserta: opts.peserta, data });
+  } else if (m.link) {
+    body = `${m.deskripsi ? `<p style="margin-top:14px;">${escapeHtml(m.deskripsi)}</p>` : ''}<div style="margin-top:18px;"><a href="${escapeHtml(m.link)}" target="_blank" rel="noopener" class="klink-btn">Buka Materi &#8599;</a></div>`;
+  } else {
+    body = m.deskripsi ? `<p style="margin-top:14px;">${escapeHtml(m.deskripsi)}</p>` : '';
+  }
+
+  return `
+    <span class="kt-badge kt-${m.tipe.toLowerCase()}">${escapeHtml(stepBadgeLabel(m.tipe))}</span>
+    <h4 style="margin-top:10px;">${escapeHtml(m.judul)}</h4>
+    <p class="kt-sub" style="margin-top:6px;">${escapeHtml(m.hari)}</p>
+    ${body}
+  `;
+}
+
+/* Render daftar grup+langkah (dipakai kelas.js & peserta.js) */
+function renderStepListHtml(groups, opts){
+  opts = opts || {};
+  if (!groups.length) return '<p class="kt-empty" style="padding:16px 24px;">Belum ada langkah untuk kelas ini.</p>';
+  return groups.map((g, idx) => {
+    const rows = g.items.map(m => {
+      const done = opts.peserta ? isStepDone(m, opts.peserta, opts.data || loadData()) : false;
+      return `
+      <li data-item="materi" data-id="${m.id}">
+        <span class="kt-badge kt-${m.tipe.toLowerCase()}">${escapeHtml(stepBadgeLabel(m.tipe))}${done ? '<span class="kt-done-flag">&#10003;</span>' : ''}</span>
+        <span class="kt-title">${escapeHtml(m.judul)}</span>
+        <span class="kt-sub">${escapeHtml(m.hari)}</span>
+      </li>`;
+    }).join('');
+    return `
+    <details class="course-day"${idx === 0 ? ' open' : ''}>
+      <summary>
+        <span><span class="cd-title">${escapeHtml(g.label)}</span><span class="cd-count">${g.items.length} langkah</span></span>
+        <svg class="cd-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </summary>
+      <ul class="course-steps kt-list">${rows}</ul>
+    </details>`;
+  }).join('');
+}
+
+/* ===== kelas.js ===== */
+
+/* =========================================================
+   SIPIJAR — Kelas Online (halaman publik)
+   Menampilkan semua kelas yang dibuat admin, jumlah peserta
+   real-time, serta pratinjau struktur langkah (76 langkah:
+   synchronous, asynchronous, kumpul tugas, presensi, evaluasi,
+   survey) per kelas. Formulir interaktif hanya aktif setelah
+   peserta masuk (lihat peserta.js / Beranda Peserta).
+   ========================================================= */
+(function(){
+  const grid = document.getElementById('kelasGrid');
+  if (!grid) return; // bukan halaman kelas.html
+
+  const shell = document.getElementById('courseShell');
+  const courseDays = document.getElementById('courseDays');
+  const panelBody = document.getElementById('coursePanelBody');
+  const courseHeadTitle = document.getElementById('courseHeadTitle');
+  const courseHeadMeta = document.getElementById('courseHeadMeta');
+  const courseHeadStatus = document.getElementById('courseHeadStatus');
+  const progressBar = document.getElementById('courseProgressBar');
+  const progressLabel = document.getElementById('courseProgressLabel');
+
+  function statusBadgeClass(status){
+    if (status === 'Selesai' || status === 'Berjalan') return 'ok';
+    return 'warn';
+  }
+
+  function statusProgressPercent(status){
+    if (status === 'Selesai') return 100;
+    if (status === 'Berjalan') return 50;
+    return 0;
+  }
+
+  function renderGrid(){
+    const data = loadData();
+    if (!data.kelas.length) {
+      grid.innerHTML = '<p style="color:var(--ink-mist);">Belum ada kelas yang dibuka. Silakan cek kembali nanti.</p>';
+      return;
+    }
+    grid.innerHTML = data.kelas.map(k => {
+      const jumlahPeserta = kelasPesertaCount(k.id, data);
+      return `
+      <div class="kelas-card">
+        <span class="badge ${statusBadgeClass(k.status)} kelas-card-status">${escapeHtml(k.status)}</span>
+        <h3>${escapeHtml(k.nama)}</h3>
+        <div class="kelas-card-meta">
+          <span>Angkatan ${escapeHtml(k.angkatan)}</span>
+          <span class="sep"></span>
+          <span>${k.jumlahLangkah} Langkah</span>
+          <span class="sep"></span>
+          <span>${jumlahPeserta} Peserta</span>
+        </div>
+        <div class="kelas-card-dates">${k.mulai} &rarr; ${k.selesai}</div>
+        <div class="kelas-card-actions">
+          <button type="button" class="admin-btn ghost small" data-view-kelas="${k.id}">Lihat Struktur</button>
+          <button type="button" class="admin-btn small" data-open-auth data-kelas-id="${k.id}">Daftar ke Kelas Ini</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function renderShell(kelasId){
+    const data = loadData();
+    const k = findKelas(kelasId, data);
+    if (!k) return;
+    const materi = data.materi.filter(m => m.kelasId === kelasId);
+    const jumlahPeserta = kelasPesertaCount(kelasId, data);
+
+    courseHeadTitle.textContent = k.nama;
+    courseHeadStatus.textContent = k.status;
+    courseHeadMeta.textContent = `Angkatan ${k.angkatan} · ${k.jumlahLangkah} Langkah · ${jumlahPeserta} Peserta`;
+
+    const pct = statusProgressPercent(k.status);
+    progressBar.style.width = pct + '%';
+    progressLabel.textContent = pct + '%';
+
+    const groups = groupMateriByHari(materi);
+    courseDays.innerHTML = renderStepListHtml(groups, { data });
+
+    panelBody.innerHTML = `<h4>Pratinjau struktur kelas</h4><p>Pilih salah satu langkah di sebelah kiri untuk melihat detailnya. Untuk mengisi presensi, evaluasi, atau survey, silakan masuk sebagai peserta terlebih dahulu.</p>`;
+
+    shell.style.display = 'grid';
+    shell.dataset.kelasId = kelasId;
+    shell.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function showMateriDetail(id){
+    const data = loadData();
+    const m = data.materi.find(x => x.id === id);
+    if (!m) return;
+    panelBody.innerHTML = renderStepPanel(m, { interactive: false, data });
+  }
+
+  grid.addEventListener('click', (e) => {
+    const viewBtn = e.target.closest('[data-view-kelas]');
+    if (viewBtn) renderShell(viewBtn.getAttribute('data-view-kelas'));
+  });
+
+  document.addEventListener('click', (e) => {
+    const liMateri = e.target.closest('#courseDays li[data-item="materi"]');
+    if (liMateri) { showMateriDetail(liMateri.getAttribute('data-id')); return; }
+  });
+
+  renderGrid();
+})();
+
+/* ===== peserta.js ===== */
+
+/* =========================================================
+   SIPIJAR — Beranda Peserta
+   Menampilkan nama kelas yang diikuti peserta setelah login,
+   beserta materi/sesi (synchronous & asynchronous) dan tugas
+   (dengan link Drive) dari kelas tersebut.
+   ========================================================= */
+let pdActiveMateriId = null;
+
+function pdStatusProgressPercent(status){
+  if (status === 'Selesai') return 100;
+  if (status === 'Berjalan') return 50;
+  return 0;
+}
+
+function refreshPesertaDashboard(){
+  const data = loadData();
+  const peserta = currentPeserta(data);
+  if (!peserta) { pesertaLogout(); return; }
+
+  const kelas = findKelas(peserta.kelasId, data);
+
+  document.getElementById('pdWelcome').textContent = 'Selamat datang, ' + peserta.nama;
+  document.getElementById('pdKelasSub').textContent = kelas
+    ? 'Anda terdaftar di kelas berikut. Klik salah satu langkah untuk mengikuti sesi, mengumpulkan tugas, presensi, evaluasi, atau survey.'
+    : 'Anda belum terdaftar di kelas manapun. Silakan hubungi admin BPSDMD Provinsi NTT.';
+
+  const kelasCard = document.getElementById('pdKelasCard');
+  const shell = document.getElementById('pdCourseShell');
+  const emptyNote = document.getElementById('pdEmptyNote');
+
+  if (kelas) {
+    emptyNote.style.display = 'none';
+    const jumlahPeserta = kelasPesertaCount(kelas.id, data);
+    kelasCard.style.display = 'block';
+    kelasCard.innerHTML = `
+      <span class="badge ${kelas.status === 'Belum Dimulai' ? 'warn' : 'ok'} kelas-card-status">${escapeHtml(kelas.status)}</span>
+      <h3>${escapeHtml(kelas.nama)}</h3>
+      <div class="kelas-card-meta">
+        <span>Angkatan ${escapeHtml(kelas.angkatan)}</span>
+        <span class="sep"></span>
+        <span>${kelas.jumlahLangkah} Langkah</span>
+        <span class="sep"></span>
+        <span>${jumlahPeserta} Peserta</span>
+      </div>
+      <div class="kelas-card-dates">${kelas.mulai} &rarr; ${kelas.selesai}</div>
+    `;
+
+    document.getElementById('pdCourseHeadTitle').textContent = kelas.nama;
+    document.getElementById('pdCourseHeadStatus').textContent = kelas.status;
+    document.getElementById('pdCourseHeadMeta').textContent = `Angkatan ${kelas.angkatan} · ${kelas.jumlahLangkah} Langkah · ${jumlahPeserta} Peserta`;
+    const pct = pdStatusProgressPercent(kelas.status);
+    document.getElementById('pdCourseProgressBar').style.width = pct + '%';
+    document.getElementById('pdCourseProgressLabel').textContent = pct + '%';
+
+    const materi = data.materi.filter(m => m.kelasId === kelas.id);
+    const groups = groupMateriByHari(materi);
+    document.getElementById('pdCourseDays').innerHTML = renderStepListHtml(groups, { data, peserta });
+
+    shell.style.display = 'grid';
+    renderPdStepDetail(pdActiveMateriId);
+  } else {
+    emptyNote.style.display = 'block';
+    kelasCard.style.display = 'none';
+    shell.style.display = 'none';
+  }
+
+  const logoutBtn = document.getElementById('btnPesertaLogout');
+  if (logoutBtn) logoutBtn.addEventListener('click', pesertaLogout);
+}
+
+function renderPdStepDetail(materiId){
+  const panelBody = document.getElementById('pdPanelBody');
+  if (!panelBody) return;
+  const data = loadData();
+  const peserta = currentPeserta(data);
+  if (!peserta) return;
+  const kelas = findKelas(peserta.kelasId, data);
+  const m = materiId ? data.materi.find(x => x.id === materiId) : null;
+
+  if (!m) {
+    panelBody.innerHTML = `<h4>Pilih salah satu langkah</h4><p>Klik salah satu langkah di sebelah kiri untuk membuka link Zoom, membaca detail tugas, mengumpulkan tugas via Drive, mengisi presensi, evaluasi, atau survey.</p>`;
+    return;
+  }
+  pdActiveMateriId = m.id;
+  panelBody.innerHTML = renderStepPanel(m, { interactive: true, peserta, kelas, data });
+}
+
+/* Klik langkah di sidebar Beranda Peserta */
+document.addEventListener('click', (e) => {
+  const li = e.target.closest('#pdCourseDays li[data-item="materi"]');
+  if (li) { renderPdStepDetail(li.getAttribute('data-id')); }
+});
+
+/* Submit formulir Presensi / Evaluasi / Survey pada Beranda Peserta */
+document.addEventListener('submit', (e) => {
+  const presensiForm = e.target.closest('[data-role="presensi-form"]');
+  const evaluasiForm = e.target.closest('[data-role="evaluasi-form"]');
+  const surveyForm = e.target.closest('[data-role="survey-form"]');
+  if (!presensiForm && !evaluasiForm && !surveyForm) return;
+  e.preventDefault();
+
+  const data = loadData();
+  const peserta = currentPeserta(data);
+  if (!peserta) return;
+  const kelasId = peserta.kelasId;
+
+  if (presensiForm) {
+    const materiId = presensiForm.getAttribute('data-materi-id');
+    const already = data.presensi.some(p => p.materiId === materiId && p.pesertaId === peserta.id);
+    if (!already) {
+      const fd = new FormData(presensiForm);
+      data.presensi.push({
+        id: uid('prs'), pesertaId: peserta.id, kelasId, materiId,
+        hari: fd.get('hari'), tanggal: fd.get('tanggal'), waktu: fd.get('waktu'),
+        materi: fd.get('materi'), status: fd.get('status') || 'Hadir'
+      });
+      saveData(data);
+      showToast('Presensi berhasil dikirim.');
+    }
+  } else if (evaluasiForm) {
+    const materiId = evaluasiForm.getAttribute('data-materi-id');
+    const m = data.materi.find(x => x.id === materiId);
+    const already = data.evaluasi.some(ev => ev.materiId === materiId && ev.pesertaId === peserta.id);
+    if (!already && m) {
+      const fd = new FormData(evaluasiForm);
+      const aspects = EVAL_ASPECTS[m.tipe] || [];
+      let total = 0;
+      aspects.forEach((label, i) => { total += Number(fd.get('aspek_' + i)) || 0; });
+      const rataRata = aspects.length ? Math.round((total / aspects.length) * 10) / 10 : 0;
+      data.evaluasi.push({
+        id: uid('evl'), pesertaId: peserta.id, kelasId, materiId, tipe: m.tipe,
+        namaDinilai: fd.get('namaDinilai') || '', rataRata, saran: fd.get('saran') || ''
+      });
+      saveData(data);
+      showToast('Evaluasi berhasil dikirim.');
+    }
+  } else if (surveyForm) {
+    const materiId = surveyForm.getAttribute('data-materi-id');
+    const already = data.survey.some(s => s.materiId === materiId && s.pesertaId === peserta.id);
+    if (!already) {
+      const fd = new FormData(surveyForm);
+      let total = 0;
+      SURVEY_ASPECTS.forEach((label, i) => { total += Number(fd.get('aspek_' + i)) || 0; });
+      const rataRata = SURVEY_ASPECTS.length ? Math.round((total / SURVEY_ASPECTS.length) * 10) / 10 : 0;
+      data.survey.push({
+        id: uid('svy'), pesertaId: peserta.id, kelasId, materiId,
+        rataRata, saran: fd.get('saran') || ''
+      });
+      saveData(data);
+      showToast('Survey berhasil dikirim.');
+    }
+  }
+
+  refreshPesertaDashboard();
+});
+
+/* ===== dashboard.js ===== */
+
+let DATA = loadData();
+
+/* ---------------------------------------------------------
+   Konfigurasi tiap entitas: kolom tabel & field form
+--------------------------------------------------------- */
+function kelasOptions(){
+  return DATA.kelas.map(k => ({ value: k.id, label: k.nama }));
+}
+function pesertaOptions(){
+  return DATA.peserta.map(p => ({ value: p.id, label: p.nama + (p.nip ? ' — ' + p.nip : '') }));
+}
+function kelasNama(id){
+  const k = DATA.kelas.find(x => x.id === id);
+  return k ? k.nama : '<span style="color:var(--ink-mist)">— kelas dihapus —</span>';
+}
+function pesertaNama(id){
+  const p = DATA.peserta.find(x => x.id === id);
+  return p ? p.nama : '<span style="color:var(--ink-mist)">— peserta dihapus —</span>';
+}
+function statusBadge(status){
+  const map = {
+    'Berjalan':'ok','Aktif':'ok','Terbit':'ok','Hadir':'ok',
+    'Belum Dimulai':'warn','Draft':'warn','Izin':'warn','Sakit':'warn',
+    'Selesai':'ok','Ditutup':'bad','Nonaktif':'bad','Alpa':'bad'
+  };
+  const cls = map[status] || 'warn';
+  return `<span class="badge ${cls}">${escapeHtml(status)}</span>`;
+}
+
+const CONFIG = {
+  kelas: {
+    title: 'Kelas',
+    fields: [
+      { key:'nama', label:'Nama Kelas', type:'text', required:true },
+      { key:'angkatan', label:'Angkatan', type:'text', required:true },
+      { key:'jumlahLangkah', label:'Jumlah Langkah', type:'number', required:true },
+      { key:'mulai', label:'Tanggal Mulai', type:'date', required:true },
+      { key:'selesai', label:'Tanggal Selesai', type:'date', required:true },
+      { key:'status', label:'Status', type:'select', options:['Belum Dimulai','Berjalan','Selesai'], required:true }
+    ],
+    columns: (row) => [
+      escapeHtml(row.nama), escapeHtml(row.angkatan), row.jumlahLangkah,
+      row.mulai, row.selesai, statusBadge(row.status)
+    ]
+  },
+  peserta: {
+    title: 'Peserta',
+    fields: [
+      { key:'nama', label:'Nama Lengkap', type:'text', required:true },
+      { key:'nip', label:'NIP', type:'text', required:true },
+      { key:'kelasId', label:'Kelas', type:'select', optionsFn:kelasOptions, required:true },
+      { key:'email', label:'Email', type:'text', required:true },
+      { key:'password', label:'Kata Sandi Login Peserta', type:'text', required:true },
+      { key:'status', label:'Status', type:'select', options:['Aktif','Nonaktif'], required:true }
+    ],
+    columns: (row) => [
+      escapeHtml(row.nama), escapeHtml(row.nip), kelasNama(row.kelasId),
+      escapeHtml(row.email), statusBadge(row.status)
+    ]
+  },
+  tugas: {
+    title: 'Tugas',
+    fields: [
+      { key:'judul', label:'Judul Tugas', type:'text', required:true },
+      { key:'kelasId', label:'Kelas', type:'select', optionsFn:kelasOptions, required:true },
+      { key:'agenda', label:'Agenda / Hari', type:'text', required:true },
+      { key:'tenggat', label:'Tenggat', type:'date', required:true },
+      { key:'status', label:'Status', type:'select', options:['Draft','Terbit','Ditutup'], required:true },
+      { key:'linkDrive', label:'Link Google Drive (Kumpul Tugas)', type:'text', required:false }
+    ],
+    columns: (row) => [
+      escapeHtml(row.judul), kelasNama(row.kelasId), escapeHtml(row.agenda),
+      row.tenggat, statusBadge(row.status), linkCell(row.linkDrive)
+    ]
+  },
+  presensi: {
+    title: 'Presensi',
+    fields: [
+      { key:'pesertaId', label:'Peserta', type:'select', optionsFn:pesertaOptions, required:true },
+      { key:'kelasId', label:'Kelas', type:'select', optionsFn:kelasOptions, required:true },
+      { key:'tanggal', label:'Tanggal', type:'date', required:true },
+      { key:'hari', label:'Hari / Sesi', type:'text', required:true },
+      { key:'status', label:'Status', type:'select', options:['Hadir','Izin','Sakit','Alpa'], required:true }
+    ],
+    columns: (row) => [
+      pesertaNama(row.pesertaId), kelasNama(row.kelasId), row.tanggal,
+      escapeHtml(row.hari), statusBadge(row.status)
+    ]
+  },
+  materi: {
+    title: 'Langkah Kelas (Materi)',
+    fields: [
+      { key:'judul', label:'Judul Langkah', type:'text', required:true },
+      { key:'kelasId', label:'Kelas', type:'select', optionsFn:kelasOptions, required:true },
+      { key:'tipe', label:'Tipe Langkah', type:'select', options:['Synchronous','Asynchronous','KumpulTugas','Presensi','EvaluasiPengajar','EvaluasiCoach','EvaluasiMentor','EvaluasiPenguji','Survey','Dokumen','Video'], required:true },
+      { key:'hari', label:'Grup / Hari ke- (mis. "Hari ke 1 - Agenda I")', type:'text', required:true },
+      { key:'urutan', label:'Urutan Tampil (angka)', type:'number', required:false },
+      { key:'deskripsi', label:'Deskripsi / Detail Tugas Asynchronous', type:'textarea', required:false },
+      { key:'link', label:'Link Zoom (Synchronous) / Link Drive (Kumpul Tugas)', type:'text', required:false },
+      { key:'waktu', label:'Jadwal / Jam Sesi (untuk Synchronous)', type:'text', required:false },
+      { key:'tenggat', label:'Tenggat (untuk Asynchronous / Kumpul Tugas)', type:'date', required:false },
+      { key:'namaPenilai', label:'Nama yang Dinilai (untuk Evaluasi Pengajar/Coach/Mentor/Penguji)', type:'text', required:false }
+    ],
+    columns: (row) => [
+      escapeHtml(row.judul), kelasNama(row.kelasId), escapeHtml(row.tipe),
+      escapeHtml(row.hari), escapeHtml((row.deskripsi || '').slice(0,60)), linkCell(row.link)
+    ]
+  },
+  evaluasi: {
+    title: 'Rekap Evaluasi (Pengajar/Coach/Mentor/Penguji)',
+    fields: [
+      { key:'pesertaId', label:'Peserta', type:'select', optionsFn:pesertaOptions, required:true },
+      { key:'kelasId', label:'Kelas', type:'select', optionsFn:kelasOptions, required:true },
+      { key:'tipe', label:'Tipe Evaluasi', type:'select', options:['EvaluasiPengajar','EvaluasiCoach','EvaluasiMentor','EvaluasiPenguji'], required:true },
+      { key:'namaDinilai', label:'Nama yang Dinilai', type:'text', required:false },
+      { key:'rataRata', label:'Rata-rata Skor', type:'number', required:false },
+      { key:'saran', label:'Saran / Masukan', type:'textarea', required:false }
+    ],
+    columns: (row) => [
+      pesertaNama(row.pesertaId), kelasNama(row.kelasId), escapeHtml(row.tipe),
+      escapeHtml(row.namaDinilai || '-'), row.rataRata || '-', escapeHtml((row.saran||'').slice(0,50))
+    ]
+  },
+  survey: {
+    title: 'Rekap Survey Penggunaan LMS',
+    fields: [
+      { key:'pesertaId', label:'Peserta', type:'select', optionsFn:pesertaOptions, required:true },
+      { key:'kelasId', label:'Kelas', type:'select', optionsFn:kelasOptions, required:true },
+      { key:'rataRata', label:'Rata-rata Skor', type:'number', required:false },
+      { key:'saran', label:'Saran / Masukan', type:'textarea', required:false }
+    ],
+    columns: (row) => [
+      pesertaNama(row.pesertaId), kelasNama(row.kelasId), row.rataRata || '-', escapeHtml((row.saran||'').slice(0,60))
+    ]
+  }
+};
+
+function linkCell(url){
+  if (!url) return '<span style="color:var(--ink-mist);">—</span>';
+  return `<a href="${escapeHtml(url)}" target="_blank" rel="noopener">Buka &#8599;</a>`;
+}
+
+const PREFIX = { kelas:'kls', peserta:'psr', tugas:'tgs', presensi:'prs', materi:'mtr', evaluasi:'evl', survey:'svy' };
+
+/* ---------------------------------------------------------
+   Navigasi sidebar & panel
+--------------------------------------------------------- */
+const navButtons = document.querySelectorAll('#adminNav button');
+navButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    navButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+    const key = btn.getAttribute('data-panel');
+    document.getElementById('panel-' + key).classList.add('active');
+    document.getElementById('pageTitle').textContent = btn.textContent;
+    if (CONFIG[key]) renderTable(key);
+    if (key === 'ringkasan') renderStats();
+  });
+});
+
+document.getElementById('btnLogout').addEventListener('click', adminLogout);
+
+/* ---------------------------------------------------------
+   Render tabel per entitas
+--------------------------------------------------------- */
+function renderTable(entity){
+  const cfg = CONFIG[entity];
+  const tbody = document.getElementById('tbody-' + entity);
+  const rows = DATA[entity];
+  if (!rows.length) {
+    tbody.innerHTML = `<tr class="empty-row"><td colspan="${cfg.fields.length + 1}">Belum ada data ${cfg.title.toLowerCase()}. Klik "+ Tambah ${cfg.title}" untuk menambahkan.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = rows.map(row => {
+    const cells = cfg.columns(row).map(c => `<td>${c}</td>`).join('');
+    return `<tr>
+      ${cells}
+      <td class="admin-actions">
+        <button class="admin-btn ghost small" data-edit="${entity}" data-id="${row.id}">Ubah</button>
+        <button class="admin-btn danger small" data-del="${entity}" data-id="${row.id}">Hapus</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function renderStats(){
+  const grid = document.getElementById('statGrid');
+  const items = [
+    { n: DATA.kelas.length, l: 'Kelas' },
+    { n: DATA.peserta.length, l: 'Peserta' },
+    { n: DATA.tugas.length, l: 'Tugas' },
+    { n: DATA.presensi.length, l: 'Catatan Presensi' },
+    { n: DATA.materi.length, l: 'Langkah Kelas' },
+    { n: DATA.evaluasi.length, l: 'Evaluasi Masuk' },
+    { n: DATA.survey.length, l: 'Survey Masuk' }
+  ];
+  grid.innerHTML = items.map(it => `<div class="admin-stat"><div class="n">${it.n}</div><div class="l">${it.l}</div></div>`).join('');
+}
+
+/* ---------------------------------------------------------
+   Modal form: tambah / ubah
+--------------------------------------------------------- */
+const modalOverlay = document.getElementById('modalOverlay');
+const modalTitle = document.getElementById('modalTitle');
+const modalForm = document.getElementById('modalForm');
+let currentEntity = null;
+let currentEditId = null;
+
+function buildFieldHtml(field, value){
+  const val = value === undefined || value === null ? '' : value;
+  if (field.type === 'select') {
+    const opts = field.optionsFn ? field.optionsFn() : field.options.map(o => ({ value:o, label:o }));
+    const optHtml = opts.map(o => `<option value="${escapeHtml(o.value)}" ${String(o.value)===String(val)?'selected':''}>${escapeHtml(o.label)}</option>`).join('');
+    return `<div class="admin-field"><label>${field.label}</label><select name="${field.key}" ${field.required?'required':''}>${optHtml}</select></div>`;
+  }
+  if (field.type === 'textarea') {
+    return `<div class="admin-field"><label>${field.label}</label><textarea name="${field.key}" ${field.required?'required':''}>${escapeHtml(val)}</textarea></div>`;
+  }
+  return `<div class="admin-field"><label>${field.label}</label><input type="${field.type}" name="${field.key}" value="${escapeHtml(val)}" ${field.required?'required':''}></div>`;
+}
+
+function openModal(entity, id){
+  currentEntity = entity;
+  currentEditId = id || null;
+  const cfg = CONFIG[entity];
+  const row = id ? DATA[entity].find(r => r.id === id) : null;
+  modalTitle.textContent = (id ? 'Ubah ' : 'Tambah ') + cfg.title;
+  modalForm.innerHTML = cfg.fields.map(f => buildFieldHtml(f, row ? row[f.key] : '')).join('') +
+    `<div class="admin-modal-actions">
+      <button type="button" class="admin-btn ghost" id="modalCancel">Batal</button>
+      <button type="submit" class="admin-btn">${id ? 'Simpan Perubahan' : 'Tambah'}</button>
+    </div>`;
+  document.getElementById('modalCancel').addEventListener('click', closeModal);
+  modalOverlay.classList.add('is-open');
+}
+
+function closeModal(){
+  modalOverlay.classList.remove('is-open');
+  modalForm.innerHTML = '';
+  currentEntity = null;
+  currentEditId = null;
+}
+
+modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+modalForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  const cfg = CONFIG[currentEntity];
+  const fd = new FormData(modalForm);
+  const obj = {};
+  cfg.fields.forEach(f => {
+    let v = fd.get(f.key) || '';
+    if (f.type === 'number') v = Number(v);
+    obj[f.key] = v;
+  });
+
+  if (currentEditId) {
+    const idx = DATA[currentEntity].findIndex(r => r.id === currentEditId);
+    DATA[currentEntity][idx] = { ...DATA[currentEntity][idx], ...obj };
+    showToast(cfg.title + ' berhasil diperbarui.');
+  } else {
+    obj.id = uid(PREFIX[currentEntity]);
+    DATA[currentEntity].push(obj);
+    showToast(cfg.title + ' berhasil ditambahkan.');
+  }
+  saveData(DATA);
+  renderTable(currentEntity);
+  renderStats();
+  closeModal();
+});
+
+/* ---------------------------------------------------------
+   Delegasi klik: tambah / ubah / hapus
+--------------------------------------------------------- */
+document.addEventListener('click', function(e){
+  const addBtn = e.target.closest('[data-add]');
+  if (addBtn) { openModal(addBtn.getAttribute('data-add')); return; }
+
+  const editBtn = e.target.closest('[data-edit]');
+  if (editBtn) { openModal(editBtn.getAttribute('data-edit'), editBtn.getAttribute('data-id')); return; }
+
+  const delBtn = e.target.closest('[data-del]');
+  if (delBtn) {
+    const entity = delBtn.getAttribute('data-del');
+    const id = delBtn.getAttribute('data-id');
+    const cfg = CONFIG[entity];
+    if (confirm(`Hapus data ${cfg.title.toLowerCase()} ini? Tindakan ini tidak bisa dibatalkan.`)) {
+      DATA[entity] = DATA[entity].filter(r => r.id !== id);
+      saveData(DATA);
+      renderTable(entity);
+      renderStats();
+      showToast(cfg.title + ' berhasil dihapus.');
+    }
+  }
+});
+
+/* ---------------------------------------------------------
+   Render awal
+--------------------------------------------------------- */
+function refreshAdminDashboard(){
+  DATA = loadData();
+  document.getElementById('whoName').textContent = sessionStorage.getItem('sipijar_admin_name') || 'Administrator';
+  renderStats();
+  Object.keys(CONFIG).forEach(renderTable);
+}
+refreshAdminDashboard();
+
+/* ===== admin-login.html (inline script) ===== */
+
+document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const user = document.getElementById('adminUser').value.trim();
+    const pass = document.getElementById('adminPass').value;
+    const errBox = document.getElementById('adminLoginError');
+
+    if (user === 'admin' && pass === 'admin123') {
+      sessionStorage.setItem('sipijar_admin_auth', '1');
+      sessionStorage.setItem('sipijar_admin_name', 'Administrator SIPIJAR');
+      spaGoto('admin-dashboard');
+    } else {
+      errBox.classList.add('show');
+    }
+  });
+
+/* ===== main.js ===== */
+
+// ===== Nav toggle (mobile) =====
+const toggle = document.getElementById('navToggle');
+const nav = document.getElementById('siteNav');
+if (toggle && nav) {
+  toggle.addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+}
+
+// ===== Scroll reveal =====
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ===== Auth modal (Daftar / Log In peserta) =====
+const authOverlay = document.getElementById('authOverlay');
+if (authOverlay) {
+  const authSignup = document.getElementById('authSignup');
+  const authLogin = document.getElementById('authLogin');
+  const suKelas = document.getElementById('suKelas');
+  const signupError = document.getElementById('signupError');
+  const loginError = document.getElementById('loginError');
+
+  function hideAuthErrors(){
+    if (signupError) signupError.classList.remove('show');
+    if (loginError) loginError.classList.remove('show');
+  }
+
+  function populateKelasSelect(preselectId){
+    if (!suKelas || typeof loadData !== 'function') return;
+    const data = loadData();
+    suKelas.innerHTML = '<option value="">Pilih Kelas...</option>' +
+      data.kelas.map(k => `<option value="${k.id}" ${k.id === preselectId ? 'selected' : ''}>${escapeHtml(k.nama)} (Angkatan ${escapeHtml(k.angkatan)})</option>`).join('');
+  }
+
+  function openAuth(form, kelasId){
+    authSignup.classList.toggle('is-active', form !== 'login');
+    authLogin.classList.toggle('is-active', form === 'login');
+    populateKelasSelect(kelasId || '');
+    hideAuthErrors();
+    authOverlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAuth(){
+    authOverlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', (e) => {
+    const openBtn = e.target.closest('[data-open-auth]');
+    if (openBtn) {
+      e.preventDefault();
+      const kelasId = openBtn.getAttribute('data-kelas-id') || '';
+      openAuth(kelasId ? 'signup' : 'login', kelasId);
+      return;
+    }
+    const switchBtn = e.target.closest('[data-auth-switch]');
+    if (switchBtn) { openAuth(switchBtn.getAttribute('data-auth-switch')); }
+  });
+  document.getElementById('authClose').addEventListener('click', closeAuth);
+  authOverlay.addEventListener('click', (e) => { if (e.target === authOverlay) closeAuth(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAuth(); });
+
+  if (authSignup) {
+    authSignup.addEventListener('submit', (e) => {
+      e.preventDefault();
+      hideAuthErrors();
+      const kelasId = suKelas.value;
+      if (!kelasId) {
+        signupError.textContent = 'Silakan pilih kelas terlebih dahulu.';
+        signupError.classList.add('show');
+        return;
+      }
+      const nama = (document.getElementById('suFirst').value.trim() + ' ' + document.getElementById('suLast').value.trim()).trim();
+      const nip = document.getElementById('suNip').value.trim();
+      const email = document.getElementById('suEmail').value.trim();
+      const password = document.getElementById('suPassword').value;
+
+      const res = registerPeserta({ nama, nip, kelasId, email, password });
+      if (!res.ok) {
+        signupError.textContent = res.reason === 'exists'
+          ? 'NIP atau email ini sudah terdaftar. Silakan Log In.'
+          : 'Kelas tidak valid, silakan coba lagi.';
+        signupError.classList.add('show');
+        return;
+      }
+      pesertaSetSession(res.peserta.id);
+      closeAuth();
+      updateNavForPeserta();
+      spaGoto('peserta-dashboard');
+    });
+  }
+
+  if (authLogin) {
+    authLogin.addEventListener('submit', (e) => {
+      e.preventDefault();
+      hideAuthErrors();
+      const identifier = document.getElementById('liIdentifier').value.trim();
+      const password = document.getElementById('liPassword').value;
+      const found = loginPeserta(identifier, password);
+      if (!found) {
+        loginError.classList.add('show');
+        return;
+      }
+      pesertaSetSession(found.id);
+      closeAuth();
+      updateNavForPeserta();
+      spaGoto('peserta-dashboard');
+    });
+  }
+}
+
+// ===== Nav-cta mencerminkan status login peserta =====
+function updateNavForPeserta(){
+  const ctaEls = document.querySelectorAll('.nav-cta');
+  if (typeof pesertaSessionId === 'function') {
+    const id = pesertaSessionId();
+    if (id) {
+      const data = loadData();
+      const p = data.peserta.find(x => x.id === id);
+      if (p) {
+        ctaEls.forEach(a => {
+          a.removeAttribute('data-open-auth');
+          a.setAttribute('href', 'peserta-dashboard.html');
+          a.textContent = 'Beranda: ' + p.nama.split(' ')[0];
+        });
+        return;
+      }
+    }
+  }
+  ctaEls.forEach(a => {
+    a.setAttribute('data-open-auth', '');
+    a.setAttribute('href', '#');
+    a.textContent = 'Masuk ke LMS';
+  });
+}
+
+/* =========================================================
+   SIPIJAR — Router single-file (SPA)
+   Menggabungkan 9 halaman jadi satu file: navigasi antar
+   "halaman" dilakukan dengan menampilkan/menyembunyikan
+   <div class="spa-page">, bukan reload dokumen baru.
+   ========================================================= */
+const SPA_PAGES = ["index", "tentang", "layanan", "kelas", "panduan", "kontak", "peserta-dashboard", "admin-login", "admin-dashboard"];
+const PAGE_TITLES = {
+  "index": "Beranda | SIPIJAR — BPSDMD Provinsi NTT",
+  "tentang": "Tentang | SIPIJAR — BPSDMD Provinsi NTT",
+  "layanan": "Layanan | SIPIJAR — BPSDMD Provinsi NTT",
+  "kelas": "Kelas Online | SIPIJAR — BPSDMD Provinsi NTT",
+  "panduan": "Panduan & Survey | SIPIJAR — BPSDMD Provinsi NTT",
+  "kontak": "Kontak | SIPIJAR — BPSDMD Provinsi NTT",
+  "peserta-dashboard": "Beranda Peserta | SIPIJAR — BPSDMD Provinsi NTT",
+  "admin-login": "Login Admin | SIPIJAR — BPSDMD Provinsi NTT",
+  "admin-dashboard": "Dashboard Admin | SIPIJAR — BPSDMD Provinsi NTT"
+};
+
+function updateActiveNav(page){
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    const href = (a.getAttribute('href') || '').split('#')[0].replace('.html','');
+    a.classList.toggle('is-current', href === page);
+  });
+}
+
+function spaGoto(page, hash){
+  if (!SPA_PAGES.includes(page)) page = 'index';
+
+  // Guard halaman yang butuh sesi (setara requireAdminAuth/requirePesertaAuth)
+  if (page === 'admin-dashboard' && sessionStorage.getItem('sipijar_admin_auth') !== '1') {
+    page = 'admin-login';
+  }
+  if (page === 'admin-login' && sessionStorage.getItem('sipijar_admin_auth') === '1') {
+    page = 'admin-dashboard';
+  }
+  if (page === 'peserta-dashboard' && (typeof pesertaSessionId !== 'function' || !pesertaSessionId())) {
+    page = 'kelas';
+  }
+
+  document.querySelectorAll('.spa-page').forEach(p => { p.hidden = true; });
+  const target = document.getElementById('page-' + page);
+  if (target) target.hidden = false;
+
+  document.body.classList.toggle('admin-body', page === 'admin-login' || page === 'admin-dashboard');
+  document.title = PAGE_TITLES[page] || 'SIPIJAR — BPSDMD Provinsi NTT';
+  updateActiveNav(page);
+  if (typeof updateNavForPeserta === 'function') updateNavForPeserta();
+
+  if (page === 'admin-dashboard' && typeof refreshAdminDashboard === 'function') refreshAdminDashboard();
+  if (page === 'peserta-dashboard' && typeof refreshPesertaDashboard === 'function') refreshPesertaDashboard();
+
+  history.replaceState(null, '', '#' + page + (hash ? ':' + hash : ''));
+
+  if (hash) {
+    const el = document.getElementById(hash);
+    if (el) { setTimeout(() => el.scrollIntoView({ behavior:'smooth', block:'start' }), 30); return; }
+  }
+  window.scrollTo(0, 0);
+}
+
+// Intercept semua link internal berformat "halaman.html" atau "halaman.html#bagian"
+document.addEventListener('click', function(e){
+  const a = e.target.closest('a[href]');
+  if (!a) return;
+  const href = a.getAttribute('href') || '';
+  const m = href.match(/^([\w-]+)\.html(?:#([\w-]+))?$/);
+  if (!m || !SPA_PAGES.includes(m[1])) return;
+  e.preventDefault();
+  spaGoto(m[1], m[2]);
+});
+
+window.addEventListener('hashchange', function(){
+  const raw = location.hash.replace('#','');
+  if (!raw) return;
+  const [page, hash] = raw.split(':');
+  spaGoto(page, hash);
+});
+
+// ===== Boot =====
+(function boot(){
+  if (typeof updateNavForPeserta === 'function') updateNavForPeserta();
+  const raw = location.hash.replace('#','');
+  const [initPage, initHash] = raw ? raw.split(':') : ['index', undefined];
+  spaGoto(initPage || 'index', initHash);
+})();
+</script>
+
+</body>
+</html>
